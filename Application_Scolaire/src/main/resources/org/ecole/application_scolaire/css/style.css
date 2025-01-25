@@ -1,0 +1,39 @@
+/* Dashboard Styles */
+.root {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.sidebar {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 20;
+    -fx-pref-width: 200px;
+}
+
+.sidebar-item {
+    -fx-fill: white;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+    -fx-padding: 10;
+    -fx-background-color: transparent;
+    -fx-hover-fill: #ecf0f1;
+}
+
+.sidebar-item:hover {
+    -fx-fill: #ecf0f1;
+    -fx-background-color: #34495e;
+}
+
+.center {
+    -fx-padding: 20;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1;
+    -fx-border-radius: 10px;
+}
+
+/* Additional Content Styling */
+.center > .text {
+    -fx-font-size: 18px;
+    -fx-fill: #2c3e50;
+}

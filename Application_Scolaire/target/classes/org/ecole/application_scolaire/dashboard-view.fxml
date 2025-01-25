@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<?import java.net.URL?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ecole.application_scolaire.DashboardController" fx:id="root">
+    <stylesheets>
+        <URL value="@css/style.css"/>
+    </stylesheets>
+    <!-- Sidebar -->
+    <left>
+        <VBox spacing="15" styleClass="sidebar">
+            <Text text="Conversion Excel to XML" fx:id="btnConversion" onMouseClicked="#showConversionContent" styleClass="sidebar-item"/>
+            <Text text="Affichage" fx:id="btnAffichage" onMouseClicked="#showAffichageContent" styleClass="sidebar-item"/>
+            <Text text="Document" fx:id="btnDocument" onMouseClicked="#showDocumentContent" styleClass="sidebar-item"/>
+            <Text text="Liste TPS" fx:id="btnListeTPS" onMouseClicked="#showListeTPSContent" styleClass="sidebar-item"/>
+        </VBox>
+    </left>
+
+    <!-- Content Area (Main Dashboard) -->
+    <center>
+        <!-- Content will be dynamically added here -->
+    </center>
+</BorderPane>
