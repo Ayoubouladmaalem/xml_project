@@ -1,13 +1,21 @@
-/* Dashboard Styles */
-.root {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-}
-
+/* Sidebar Styles */
 .sidebar {
-    -fx-background-color: #2c3e50;
+    -fx-background-color: #1E90FF; /* Sky blue color */
     -fx-padding: 20;
     -fx-pref-width: 200px;
+    -fx-alignment: top_center;  /* Align items to the top */
+}
+
+.sidebar-logo {
+    -fx-padding: 5;
+    -fx-alignment: center;
+    -fx-halign: center;
+    -fx-background-color: transparent;
+}
+
+.sidebar-items {
+    -fx-alignment: center;  /* Center the sidebar items */
+    -fx-spacing: 20;
 }
 
 .sidebar-item {
@@ -15,13 +23,30 @@
     -fx-font-size: 16px;
     -fx-cursor: hand;
     -fx-padding: 10;
-    -fx-background-color: transparent;
-    -fx-hover-fill: #ecf0f1;
+    -fx-background-color: transparent;  /* Default background */
+    -fx-text-align: center;
+    -fx-font-family: "Times New Roman", Times, serif;  /* Font family applied here */
+    -fx-border-radius: 5px; /* Rounded corners for a smoother look */
+    -fx-border-color: transparent; /* Remove borders */
+    -fx-border-width: 2px;
 }
 
+/* Hover effect for the entire item */
 .sidebar-item:hover {
+    -fx-fill: #34495e; /* Change text color */
+    -fx-background-color: white;  /* Change the background to white */
+    -fx-border-color: #34495e;  /* Optional: Add a border to make it stand out */
+}
+
+/* Focused item effect */
+.sidebar-item:focused {
+    -fx-background-color: #1abc9c;
     -fx-fill: #ecf0f1;
-    -fx-background-color: #34495e;
+}
+
+/* Apply font specifically to text content of the sidebar items */
+.sidebar-item > .text {
+    -fx-font-family: "Times New Roman", Times, serif;  /* Ensure the text uses this font */
 }
 
 .center {
