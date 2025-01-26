@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Text?>
+
+<?import java.net.URL?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ecole.application_scolaire.Dashboard.DashboardController" fx:id="root">
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
+    <!-- Sidebar -->
+    <left>
+        <VBox spacing="15" styleClass="sidebar">
+            <!-- Logo at the top -->
+            <ImageView fx:id="sidebarLogo" styleClass="sidebar-logo" fitWidth="150" fitHeight="150">
+                <Image url="@../images/Ensa.png"/> <!-- Adjust path to your logo image -->
+            </ImageView>
+
+            <!-- Sidebar items in the center -->
+            <VBox fx:id="sidebarItems" alignment="CENTER" spacing="15" styleClass="sidebar-items">
+                <Text text="Conversion Excel to XML" fx:id="btnConversion" onMouseClicked="#showConversionContent" styleClass="sidebar-item"/>
+                <Text text="Affichage" fx:id="btnAffichage" onMouseClicked="#showAffichageContent" styleClass="sidebar-item"/>
+                <Text text="Document" fx:id="btnDocument" onMouseClicked="#showDocumentContent" styleClass="sidebar-item"/>
+                <Text text="Liste TP" fx:id="btnListeTPS" onMouseClicked="#showListeTPSContent" styleClass="sidebar-item"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- Content Area (Main Dashboard) -->
+    <center>
+        <!-- Content will be dynamically added here -->
+    </center>
+</BorderPane>
