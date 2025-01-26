@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <releveNotes>
     <etudiant>
-        <nom>Oulad Maalem</nom>
-        <prenom>Ayoub</prenom>
+        <nom>OULAD MAALEM</nom>
+        <prenom>AYOUB</prenom>
         <cne>L665020</cne>
         <dateNaissance>17/09/2003</dateNaissance>
         <lieuNaissance>Tetouan</lieuNaissance>
@@ -173,8 +173,8 @@
     <decision>Résultat admis, l'étudiant(e) ingénieur est affecté(e) à GINF3</decision>
 
     <etudiant>
-        <nom>Samadi</nom>
-        <prenom>Issam</prenom>
+        <nom>Hilaly</nom>
+        <prenom>Anas</prenom>
         <cne>L665020</cne>
         <dateNaissance>17/09/2003</dateNaissance>
         <lieuNaissance>Tetouan</lieuNaissance>
