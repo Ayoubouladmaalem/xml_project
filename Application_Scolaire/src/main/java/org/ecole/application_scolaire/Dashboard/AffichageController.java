@@ -249,12 +249,12 @@ public class AffichageController {
             Element root = doc.createElement("moduleResult");
             root.setAttribute("moduleCode", lastSelectedModule);
 
-            // Ajouter le nom du module
-            String moduleName = lastSelectedModule; // Vous pouvez récupérer un nom plus détaillé si nécessaire
-            root.setAttribute("moduleName", moduleName); // Ajouter un attribut pour le nom
+            // Add module name
+            String moduleName = lastSelectedModule; // You can retrieve a more detailed name if needed
+            root.setAttribute("moduleName", moduleName); // Add an attribute for the module name
             doc.appendChild(root);
 
-            // fill from the table data
+            // Fill from the table data
             for (StudentRow row : rows) {
                 Element stuElt = doc.createElement("student");
                 stuElt.setAttribute("codeApogee", row.getCodeApogee());
@@ -286,7 +286,7 @@ public class AffichageController {
                 root.appendChild(stuElt);
             }
 
-            // write the doc to "module.xml"
+            // Write the doc to "module.xml"
             File xmlOut = new File("module.xml");
             writeXml(doc, xmlOut);
 
@@ -297,9 +297,18 @@ public class AffichageController {
                 return;
             }
 
-            // Créer le fichier HTML avec un nom basé sur le module sélectionné
+            // Determine the user's Downloads directory
+            String userHome = System.getProperty("user.home");
+            File downloadsDir = new File(userHome, "Downloads");
+            if (!downloadsDir.exists()) {
+                downloadsDir.mkdirs(); // Create the Downloads directory if it doesn't exist
+            }
+
+            // Create the HTML file with a name based on the selected module
             String htmlFileName = moduleName + ".html";
-            File htmlOut = new File("C:/Users/PC/Downloads/" + htmlFileName);
+            File htmlOut = new File(downloadsDir, htmlFileName);
+
+            // Transform XML to HTML
             transformXmlToHtml(xmlOut, xsltFile, htmlOut);
 
             statusLabel.setText("Export HTML réussi : " + htmlOut.getAbsolutePath());

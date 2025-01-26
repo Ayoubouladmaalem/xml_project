@@ -11,5 +11,5 @@
   <component name="ProjectResources">
     <resource url="http://www.w3.org/1999/XSL/Format" location="$PROJECT_DIR$/src/main/resources/xml/student_card.xslt" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="openjdk-23" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="openjdk-23" project-jdk-type="JavaSDK" />
 </project>
