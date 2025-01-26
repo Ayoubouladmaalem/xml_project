@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -8,30 +9,36 @@
             fx:controller="org.ecole.application_scolaire.Dashboard.DocumentController"
             prefHeight="600.0" prefWidth="600.0">
 
+    <!-- Select Student -->
+    <Label text="Sélectionnez un étudiant :"
+           layoutX="20" layoutY="70"
+           style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+    <ComboBox fx:id="studentComboBox"
+              layoutX="20" layoutY="100"
+              prefWidth="200" />
+
     <!-- Carte Étudiant Section -->
-    <Label text="Pour générer un PDF de votre carte étudiant :"
-           layoutX="20" layoutY="50"
-           style="-fx-font-size: 14px; -fx-font-weight: bold;" />
     <Button text="Générer Carte Étudiant PDF"
-            onAction="#handleGeneratePdf"
-            layoutX="20" layoutY="80"
+            onAction="#handleGenerateStudentCardPdf"
+            layoutX="20" layoutY="150"
             style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
 
-    <!-- Emploi du Temps Section -->
-    <Label text="Pour générer un PDF de votre emploi du temps :"
-           layoutX="20" layoutY="150"
+    <!-- Timetable Section -->
+    <Label text="Sélectionnez une semaine :"
+           layoutX="20" layoutY="220"
            style="-fx-font-size: 14px; -fx-font-weight: bold;" />
-    <Button text="Générer Timetable PDF"
+    <ComboBox fx:id="weekComboBox"
+              layoutX="20" layoutY="250"
+              prefWidth="200" />
+    <Button text="Générer Emploi du Temps PDF"
             onAction="#handleGenerateTimetablePdf"
-            layoutX="20" layoutY="180"
+            layoutX="20" layoutY="300"
             style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
 
-    <Label text="Pour générer un PDF de votre relevé de notes :"
-           layoutX="20" layoutY="250"
-           style="-fx-font-size: 14px; -fx-font-weight: bold;" />
     <Button text="Générer Relevé de Notes PDF"
             onAction="#handleGenerateRelevePdf"
-            layoutX="20" layoutY="280"
+            layoutX="20" layoutY="380"
             style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+
 
 </AnchorPane>

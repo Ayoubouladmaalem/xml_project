@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<moduleResult moduleCode="GINF41" moduleName="GINF41">
+  <student codeApogee="21010261">
+    <nom>BOULERBAH</nom>
+    <prenom>YASSER</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="18" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="13" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="12" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="18" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="19005680">
+    <nom>FAROUK</nom>
+    <prenom>ZAKARIA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="11" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="17" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="18" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="15" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21009110">
+    <nom>BERKOUKT</nom>
+    <prenom>AMINE</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="9" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="7" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="11" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="17" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="20000927">
+    <nom>KORAICHI</nom>
+    <prenom>SALMANE</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="16" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="18" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="18" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="9" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="22012817">
+    <nom>BENMGUIRIDA</nom>
+    <prenom>ANAS</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="20" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="15" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="17" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="19" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="19006658">
+    <nom>EL</nom>
+    <prenom>HARIRI KENZA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="7" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="15" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="14" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="18" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21009157">
+    <nom>AZZMAN</nom>
+    <prenom>NORELIMANE</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="20" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="10" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="18" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="14" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21009475">
+    <nom>DAHBI</nom>
+    <prenom>MOAD</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="17" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="12" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="11" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="17" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010379">
+    <nom>EL</nom>
+    <prenom>AIDI IDRISSI ACHRAF</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="12" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="15" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="10" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="13" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21011667">
+    <nom>SOUIDAK</nom>
+    <prenom>FIRDAOUS</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="7" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="11" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="20" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="7" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010411">
+    <nom>BEN</nom>
+    <prenom>IMRAN AHLAM</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="10" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="16" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="18" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="11" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="20007042">
+    <nom>EL</nom>
+    <prenom>FERCHOUNI SOUKAYNA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="19" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="14" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="14" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="14" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010334">
+    <nom>HILALY</nom>
+    <prenom>ANAS</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="14" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="12" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="19" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="14" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21011787">
+    <nom>EL-</nom>
+    <prenom>OTMANI SARA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="15" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="17" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="12" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="16" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21011784">
+    <nom>NAYA</nom>
+    <prenom>TAHA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="14" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="16" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="14" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="20" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010011">
+    <nom>IKEN</nom>
+    <prenom>HANAE</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="18" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="18" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="19" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="15" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010299">
+    <nom>CHERKI</nom>
+    <prenom>HOUSSAM</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="20" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="20" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="12" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="20" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010332">
+    <nom>OULAD</nom>
+    <prenom>MAALEM AYOUB</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="12" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="14" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="16" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="14" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010255">
+    <nom>TAJIDI</nom>
+    <prenom>MALIKA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="19" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="15" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="11" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="11" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21011780">
+    <nom>KONTAR</nom>
+    <prenom>RIHAM</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="8" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="20" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="12" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="15" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010291">
+    <nom>LOUAH</nom>
+    <prenom>MOHAMMED</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="14" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="10" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="18" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="14" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21009025">
+    <nom>BOUSSAID</nom>
+    <prenom>MERYEME</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="18" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="14" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="10" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="15" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="20007896">
+    <nom>EL</nom>
+    <prenom>OUAHABI ANASS</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="11" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="16" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="10" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="11" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010409">
+    <nom>ZAHAR</nom>
+    <prenom>KENZA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="16" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="11" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="17" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="17" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="20007695">
+    <nom>RANBOUK</nom>
+    <prenom>LAMIAE</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="17" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="20" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="10" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="10" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21011779">
+    <nom>BIGAGANE</nom>
+    <prenom>ABDELLAH</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="19" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="6" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="11" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="17" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21011615">
+    <nom>TAOUIL</nom>
+    <prenom>FATIMAEZZAHRAE</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="12" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="15" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="16" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="13" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010324">
+    <nom>EL</nom>
+    <prenom>BAKALI MALAK</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="13" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="12" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="14" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="13" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010368">
+    <nom>JEBARI</nom>
+    <prenom>HASSANI ABDELHAK</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="10" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="16" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="12" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="17" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010401">
+    <nom>SAKHRI</nom>
+    <prenom>MOHAMED</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="9" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="4" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="6" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="17" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010326">
+    <nom>CHAIBERRAS</nom>
+    <prenom>SOUHAIL</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="18" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="17" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="13" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="11" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010403">
+    <nom>EL</nom>
+    <prenom>ADNANI EL MEHDI</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="20" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="14" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="20" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="18" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010287">
+    <nom>ALLAM</nom>
+    <prenom>ELARBI</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="16" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="18" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="20" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="11" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010441">
+    <nom>EL</nom>
+    <prenom>M RABET SAIDA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="20" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="10" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="7" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="15" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010320">
+    <nom>HADAD</nom>
+    <prenom>WAIL</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="15" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="16" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="16" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="10" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010242">
+    <nom>STITOU</nom>
+    <prenom>ABIR</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="16" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="16" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="17" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="20" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010322">
+    <nom>EL</nom>
+    <prenom>HARRAK MEHDI</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="17" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="5" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="10" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="14" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="22012491">
+    <nom>EL</nom>
+    <prenom>HLLAFI BASMA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="14" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="7" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="19" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="8" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010482">
+    <nom>ARIB</nom>
+    <prenom>AYMANE</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="20" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="10" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="11" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="11" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="20000104">
+    <nom>LABJAKH</nom>
+    <prenom>SAFAE</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="11" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="17" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="12" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="13" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="20001713">
+    <nom>TAIBI</nom>
+    <prenom>IMMRANI AMAL</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="16" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="11" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="14" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="10" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="20001758">
+    <nom>AL</nom>
+    <prenom>AZAMI TAREK</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="11" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="16" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="20" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="19" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="17004026">
+    <nom>EL</nom>
+    <prenom>YAZGHI MARYEM</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="20" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="19" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="18" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="10" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21011724">
+    <nom>BOUNOUAR</nom>
+    <prenom>MOHAMMED</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="11" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="12" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="15" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="17" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010319">
+    <nom>EL</nom>
+    <prenom>GHAZI SILIA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="10" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="13" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="15" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="20" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010439">
+    <nom>ECHCHRIKI</nom>
+    <prenom>IMAD</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="17" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="17" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="16" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="19" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21011326">
+    <nom>ABOU-EL</nom>
+    <prenom>KASEM KENZA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="18" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="10" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="15" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="17" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010356">
+    <nom>AZZOUZ</nom>
+    <prenom>CHAIMAE</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="18" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="12" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="11" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="18" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010359">
+    <nom>HAJOUZ</nom>
+    <prenom>RIHAB</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="10" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="20" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="15" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="13" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010358">
+    <nom>AHMYTTOU</nom>
+    <prenom>AYA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="20" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="14" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="10" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="12" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010231">
+    <nom>KEROUAN</nom>
+    <prenom>SALAH SOUMAIA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="19" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="18" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="16" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="4" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010278">
+    <nom>ABDELOUAHAB</nom>
+    <prenom>SOUFIANE</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="12" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="13" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="15" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="13" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010476">
+    <nom>BENCHINE</nom>
+    <prenom>ABDELILAH</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="13" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="20" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="10" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="20" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010272">
+    <nom>EL</nom>
+    <prenom>AOUAD OUAAIL</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="14" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="10" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="13" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="14" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010395">
+    <nom>ABBAD</nom>
+    <prenom>ABDELOUAHED</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="12" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="17" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="20" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="19" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010274">
+    <nom>EL</nom>
+    <prenom>GARTI YASSINE</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="20" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="19" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="11" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="14" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21009322">
+    <nom>SARSRI</nom>
+    <prenom>AYMANE</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="17" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="10" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="20" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="14" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="20011005">
+    <nom>BOUHNINE</nom>
+    <prenom>SAFAA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="4" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="10" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="7" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="4" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010306">
+    <nom>EL-BATTEOUI</nom>
+    <prenom>OUSSAMA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="17" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="19" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="10" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="12" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21002603">
+    <nom>BOUKER</nom>
+    <prenom>MOHAMMED</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="4" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="18" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="12" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="17" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="20009973">
+    <nom>KABBOUR</nom>
+    <prenom>WISSAL</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="14" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="7" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="5" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="17" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010423">
+    <nom>EL</nom>
+    <prenom>MATNI ADAM</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="4" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="20" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="14" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="9" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010348">
+    <nom>SOULHI</nom>
+    <prenom>MALAK</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="5" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="13" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="17" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="17" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010740">
+    <nom>LIO-EDDINE</nom>
+    <prenom>SAMIA</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="12" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="17" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="11" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="15" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21010266">
+    <nom>AIDOUN</nom>
+    <prenom>IBTISSAM</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="10" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="10" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="15" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="11" intitule="Gestion des données distribuées"/>
+  </student>
+  <student codeApogee="21015477">
+    <nom>SYLLA</nom>
+    <prenom>NFALY</prenom>
+    <naissance>??/??/????</naissance>
+    <submodule bareme="20" code="GINF41-S1" grade="13" intitule="Introduction à J2EE"/>
+    <submodule bareme="20" code="GINF41-S2" grade="13" intitule="Programmation en C#"/>
+    <submodule bareme="20" code="GINF41-S3" grade="16" intitule="Gestion des données complexes"/>
+    <submodule bareme="20" code="GINF41-S4" grade="13" intitule="Gestion des données distribuées"/>
+  </student>
+</moduleResult>

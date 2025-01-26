@@ -6,6 +6,7 @@ module org.ecole.application_scolaire {
     requires javafx.web;
     requires java.desktop;
     requires org.apache.pdfbox;
+    requires fop;
 
     opens org.ecole.application_scolaire to javafx.fxml;
     exports org.ecole.application_scolaire;

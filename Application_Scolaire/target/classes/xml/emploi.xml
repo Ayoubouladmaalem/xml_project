@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schedule>
+
+    <week number="1">
+
+        <day name="Lundi" date="30/12">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>ASSURANCE CONTROL</subject>
+                <teacher>BEN HAMZA</teacher>
+                <room>SALLE B21</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>CM</type>
+                <subject>ASSURANCE CONTROL</subject>
+                <teacher>BEN HAMZA</teacher>
+                <room>SALLE B21</room>
+            </slot>
+            <slot time="13:30 - 15:00">
+                <type>CM</type>
+                <subject>INTERFACE HOMME MA</subject>
+                <teacher>E. ALAMI</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="15:30 - 17:00">
+                <type>TD</type>
+                <subject>INTERFACE HOMME MA</subject>
+                <teacher>E. ALAMI</teacher>
+                <room>SALLE B20</room>
+            </slot>
+        </day>
+        <day name="Mardi" date="31/12">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>OPTIMISATION ET QU</subject>
+                <teacher>FISSOUNE</teacher>
+                <room>SALLE B21</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>TD</type>
+                <subject>OPTIMISATION ET QU</subject>
+                <teacher>FISSOUNE</teacher>
+                <room>SALLE B21</room>
+            </slot>
+            <slot time="13:30 - 15:00">
+                <type>CM</type>
+                <subject>ANGLAIS</subject>
+                <teacher>BOURGUIT</teacher>
+                <room>SALLE C1</room>
+            </slot>
+            <slot time="15:30 - 17:00">
+                <type>CM</type>
+                <subject>ANGLAIS</subject>
+                <teacher>BOURGUIT</teacher>
+                <room>SALLE C1</room>
+            </slot>
+        </day>
+        <day name="Mercredi" date="01/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>PROGRAMMATION ORIE</subject>
+                <teacher>EL HADDAD</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>CM</type>
+                <subject>PROGRAMMATION ORIE</subject>
+                <teacher>EL HADDAD</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="13:30 - 15:00">
+                <type>CM</type>
+                <subject>PROGRAMMATION SYST</subject>
+                <teacher>AMECHNOUF</teacher>
+                <room>SALLE B22</room>
+            </slot>
+            <slot time="15:30 - 17:00">
+                <type>TP</type>
+                <subject>PROGRAMMATION SYST</subject>
+                <teacher>AMECHNOUF</teacher>
+                <room>SALLE B22</room>
+            </slot>
+        </day>
+        <day name="Jeudi" date="02/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>CYCLE DE VIE LOGIC</subject>
+                <teacher>BADIR</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>CM</type>
+                <subject>CYCLE DE VIE LOGIC</subject>
+                <teacher>BADIR</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="13:30 - 15:00">
+                <type>CM</type>
+                <subject>ESPAGNOL</subject>
+                <teacher>JAMAART</teacher>
+                <room>SALLE B2</room>
+            </slot>
+            <slot time="15:30 - 17:00">
+                <type>TP</type>
+                <subject>PROGRAMMATION SYST</subject>
+                <teacher>AMECHNOUF</teacher>
+                <room>SALLE B22</room>
+            </slot>
+        </day>
+        <day name="Vendredi" date="03/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>MODELISATION ORIEN</subject>
+                <teacher>EL HAJI</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>CM</type>
+                <subject>MODELISATION ORIEN</subject>
+                <teacher>EL HAJI</teacher>
+                <room>SALLE B20</room>
+            </slot>
+        </day>
+    </week>
+
+
+
+
+
+
+
+
+
+    <week number="2">
+
+        <day name="Lundi" date="05/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>ASSURANCE CONTROL</subject>
+                <teacher>BEN HAMZA</teacher>
+                <room>SALLE B21</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>CM</type>
+                <subject>ASSURANCE CONTROL</subject>
+                <teacher>BEN HAMZA</teacher>
+                <room>SALLE B21</room>
+            </slot>
+            <slot time="13:30 - 15:00">
+                <type>CM</type>
+                <subject>INTERFACE HOMME MA</subject>
+                <teacher>E. ALAMI</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="15:30 - 17:00">
+                <type>TD</type>
+                <subject>INTERFACE HOMME MA</subject>
+                <teacher>E. ALAMI</teacher>
+                <room>SALLE B20</room>
+            </slot>
+        </day>
+        <day name="Mardi" date="06/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>OPTIMISATION ET QU</subject>
+                <teacher>FISSOUNE</teacher>
+                <room>SALLE B21</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>TD</type>
+                <subject>OPTIMISATION ET QU</subject>
+                <teacher>FISSOUNE</teacher>
+                <room>SALLE B21</room>
+            </slot>
+            <slot time="13:30 - 15:00">
+                <type>CM</type>
+                <subject>ANGLAIS</subject>
+                <teacher>BOURGUIT</teacher>
+                <room>SALLE C1</room>
+            </slot>
+            <slot time="15:30 - 17:00">
+                <type>CM</type>
+                <subject>ANGLAIS</subject>
+                <teacher>BOURGUIT</teacher>
+                <room>SALLE C1</room>
+            </slot>
+        </day>
+        <day name="Mercredi" date="07/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>PROGRAMMATION ORIE</subject>
+                <teacher>EL HADDAD</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>CM</type>
+                <subject>PROGRAMMATION ORIE</subject>
+                <teacher>EL HADDAD</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="13:30 - 15:00">
+                <type>CM</type>
+                <subject>PROGRAMMATION SYST</subject>
+                <teacher>AMECHNOUF</teacher>
+                <room>SALLE B22</room>
+            </slot>
+            <slot time="15:30 - 17:00">
+                <type>TP</type>
+                <subject>PROGRAMMATION SYST</subject>
+                <teacher>AMECHNOUF</teacher>
+                <room>SALLE B22</room>
+            </slot>
+        </day>
+        <day name="Jeudi" date="08/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>CYCLE DE VIE LOGIC</subject>
+                <teacher>BADIR</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>CM</type>
+                <subject>CYCLE DE VIE LOGIC</subject>
+                <teacher>BADIR</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="13:30 - 15:00">
+                <type>CM</type>
+                <subject>ESPAGNOL</subject>
+                <teacher>JAMAART</teacher>
+                <room>SALLE B2</room>
+            </slot>
+            <slot time="15:30 - 17:00">
+                <type>TP</type>
+                <subject>PROGRAMMATION SYST</subject>
+                <teacher>AMECHNOUF</teacher>
+                <room>SALLE B22</room>
+            </slot>
+        </day>
+        <day name="Vendredi" date="09/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>MODELISATION ORIEN</subject>
+                <teacher>EL HAJI</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>CM</type>
+                <subject>MODELISATION ORIEN</subject>
+                <teacher>EL HAJI</teacher>
+                <room>SALLE B20</room>
+            </slot>
+        </day>
+
+    </week>
+
+
+
+
+
+
+
+
+
+
+    <week number="3">
+
+        <day name="Lundi" date="13/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>ASSURANCE CONTROL</subject>
+                <teacher>BEN HAMZA</teacher>
+                <room>SALLE B21</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>CM</type>
+                <subject>ASSURANCE CONTROL</subject>
+                <teacher>BEN HAMZA</teacher>
+                <room>SALLE B21</room>
+            </slot>
+            <slot time="13:30 - 15:00">
+                <type>CM</type>
+                <subject>INTERFACE HOMME MA</subject>
+                <teacher>E. ALAMI</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="15:30 - 17:00">
+                <type>TD</type>
+                <subject>INTERFACE HOMME MA</subject>
+                <teacher>E. ALAMI</teacher>
+                <room>SALLE B20</room>
+            </slot>
+        </day>
+        <day name="Mardi" date="14/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>OPTIMISATION ET QU</subject>
+                <teacher>FISSOUNE</teacher>
+                <room>SALLE B21</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>TD</type>
+                <subject>OPTIMISATION ET QU</subject>
+                <teacher>FISSOUNE</teacher>
+                <room>SALLE B21</room>
+            </slot>
+            <slot time="13:30 - 15:00">
+                <type>CM</type>
+                <subject>ANGLAIS</subject>
+                <teacher>BOURGUIT</teacher>
+                <room>SALLE C1</room>
+            </slot>
+            <slot time="15:30 - 17:00">
+                <type>CM</type>
+                <subject>ANGLAIS</subject>
+                <teacher>BOURGUIT</teacher>
+                <room>SALLE C1</room>
+            </slot>
+        </day>
+        <day name="Mercredi" date="15/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>PROGRAMMATION ORIE</subject>
+                <teacher>EL HADDAD</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>CM</type>
+                <subject>PROGRAMMATION ORIE</subject>
+                <teacher>EL HADDAD</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="13:30 - 15:00">
+                <type>CM</type>
+                <subject>PROGRAMMATION SYST</subject>
+                <teacher>AMECHNOUF</teacher>
+                <room>SALLE B22</room>
+            </slot>
+            <slot time="15:30 - 17:00">
+                <type>TP</type>
+                <subject>PROGRAMMATION SYST</subject>
+                <teacher>AMECHNOUF</teacher>
+                <room>SALLE B22</room>
+            </slot>
+        </day>
+        <day name="Jeudi" date="16/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>CYCLE DE VIE LOGIC</subject>
+                <teacher>BADIR</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>CM</type>
+                <subject>CYCLE DE VIE LOGIC</subject>
+                <teacher>BADIR</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="13:30 - 15:00">
+                <type>CM</type>
+                <subject>ESPAGNOL</subject>
+                <teacher>JAMAART</teacher>
+                <room>SALLE B2</room>
+            </slot>
+            <slot time="15:30 - 17:00">
+                <type>TP</type>
+                <subject>PROGRAMMATION SYST</subject>
+                <teacher>AMECHNOUF</teacher>
+                <room>SALLE B22</room>
+            </slot>
+        </day>
+        <day name="Vendredi" date="17/01">
+            <slot time="09:00 - 10:30">
+                <type>CM</type>
+                <subject>MODELISATION ORIEN</subject>
+                <teacher>EL HAJI</teacher>
+                <room>SALLE B20</room>
+            </slot>
+            <slot time="11:00 - 12:30">
+                <type>CM</type>
+                <subject>MODELISATION ORIEN</subject>
+                <teacher>EL HAJI</teacher>
+                <room>SALLE B20</room>
+            </slot>
+        </day>
+
+    </week>
+
+
+
+
+
+
+
+
+    <week number="4">
+
+        <day name="Lundi" date="20/01">
+            <event>
+                <time>14:30 - 16:30</time>
+                <title>Interface Homme Machine</title>
+                <professors>El Alami, Chater, Cherkaoui</professors>
+                <rooms>Salle C5, Salle C6</rooms>
+            </event>
+        </day>
+        <day name="Mardi" date="21/01">
+            <event>
+                <time>14:30 - 16:30</time>
+                <title>Assurance Control</title>
+                <professors>Cherkaoui, El Fathi, La Laoui, Ben Hamza</professors>
+                <rooms>Salle C5, Salle C6</rooms>
+            </event>
+        </day>
+        <day name="Mercredi" date="22/01">
+            <event>
+                <time>09:30 - 11:30</time>
+                <title>Management de Projet</title>
+                <professors>Rahali Azouzi, Mergoum, Badir</professors>
+                <rooms>Salle B20, Salle B22</rooms>
+            </event>
+            <event>
+                <time>12:00 - 14:00</time>
+                <title>Cycle de Vie Logiciel</title>
+                <professors>Badir, El Janati, El Idris</professors>
+                <rooms>Salle C5, Salle C6</rooms>
+            </event>
+        </day>
+        <day name="Jeudi" date="23/01">
+            <event>
+                <time>09:30 - 11:30</time>
+                <title>Modélisation Orientée Objet</title>
+                <professors>El Hajj, Chahboun, El Mamouni</professors>
+                <rooms>Salle A8, Salle A7</rooms>
+            </event>
+            <event>
+                <time>12:00 - 14:00</time>
+                <title>Cycle de Vie Logiciel</title>
+                <professors>Badir, El Janati, El Idris</professors>
+                <rooms>Salle C5, Salle C6</rooms>
+            </event>
+        </day>
+        <day name="Vendredi" date="24/01">
+            <event>
+                <time>09:30 - 11:30</time>
+                <title>Modélisation Orientée Objet</title>
+                <professors>El Hajj, Rahali Azouzi, Chahboun, Natibouker</professors>
+                <rooms>Salle B19, Salle B21</rooms>
+            </event>
+            <event>
+                <time>15:00 - 17:00</time>
+                <title>Programmation Système</title>
+                <professors>El Haddad, Bourkane</professors>
+                <rooms>Salle C5, Salle C6</rooms>
+            </event>
+        </day>
+    </week>
+
+
+
+
+
+
+
+</schedule>

@@ -1,38 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  Minimal UI to demonstrate the ConversionController usage.
+  Adjust as needed.
+-->
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
+<?import javafx.scene.text.Text?>
 <?import java.net.URL?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.ecole.application_scolaire.Dashboard.ConversionController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefWidth="600" prefHeight="400">
     <stylesheets>
         <URL value="@../css/conversion.css"/>
     </stylesheets>
 
-    <!-- Title or Content Text -->
-    <Text fx:id="contentText" layoutX="20.0" layoutY="100.0" />
+    <children>
+        <!-- "Upload" button -->
+        <Button fx:id="uploadButton"
+                layoutX="50" layoutY="50"
+                text="Upload Excel"
+                onAction="#handleUploadButton"
+                styleClass="action-button"/>
 
+        <!-- "Convert & View" button -->
+        <Button fx:id="convertAndViewButton"
+                layoutX="50" layoutY="100"
+                text="Convert  View"
+                onAction="#handleConvertAndViewButton"
+                styleClass="action-button"/>
 
-    <!-- Button to convert and view Excel file -->
-    <Button fx:id="convertAndViewButton" text="Convertir le fichier excel Students_GInf2"
-            layoutX="20.0" layoutY="120.0" onAction="#handleConvertAndViewButton" styleClass="action-button" />
+        <!-- "View XML" button -->
+        <Button fx:id="viewXmlButton"
+                layoutX="50" layoutY="150"
+                text="View XML"
+                onAction="#handleViewXmlButton"/>
 
-    <!-- Text before Upload Button -->
-    <Text fx:id="textBeforeUpload" layoutX="20.0" layoutY="230.0" text="Upload le fichier excel à convertir: " styleClass="info-text"/>
+        <!-- A label to show status messages -->
+        <Label fx:id="statusLabel"
+               layoutX="50" layoutY="200"
+               text="Status: ..."
+               styleClass="status-label"/>
 
-    <!-- Button to upload Excel File -->
-    <Button fx:id="uploadButton"
-            layoutX="20.0" layoutY="250.0" text="Upload le fichier excel "
-            onAction="#handleUploadButton" styleClass="action-button" />
+        <!-- Some Text placeholders -->
+        <Text fx:id="textBeforeUpload"
+              layoutX="50" layoutY="270"
+              text="Text before upload..."
+              styleClass="info-text"/>
 
-    <!-- Button to view XML File -->
-    <Button fx:id="viewXmlButton" layoutX="20.0" layoutY="320.0" text="Voir fichier XML"
-            onAction="#handleViewXmlButton" styleClass="action-button" />
-
-    <!-- Status Label -->
-    <Label fx:id="statusLabel" layoutX="20.0" layoutY="370.0" text="Status: Attend pour upload..." styleClass="status-label" />
+        <Text fx:id="contentText"
+              layoutX="50" layoutY="300"
+              text="Content text here..."/>
+    </children>
 </AnchorPane>

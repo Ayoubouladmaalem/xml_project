@@ -1,339 +1,385 @@
 package org.ecole.application_scolaire.Dashboard;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Alert;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.fop.apps.FOUserAgent;
+import org.apache.fop.apps.Fop;
+import org.apache.fop.apps.FopFactory;
+import org.apache.fop.apps.MimeConstants;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
-import java.io.IOException;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.sax.SAXResult;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import java.io.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class DocumentController {
 
-    // Generate "Carte Étudiant" PDF
+    private static final List<String> ALLOWED_WEEKS = Arrays.asList(
+            "Week of 30/12",
+            "Week of 06/01",
+            "Week of 13/01",
+            "Week of 20/01"
+    );
+
     @FXML
-    public void handleGeneratePdf() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-        File selectedFile = fileChooser.showOpenDialog(new Stage());
-
-        if (selectedFile != null) {
-            try {
-                // Parse XML File
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder builder = factory.newDocumentBuilder();
-                Document doc = builder.parse(selectedFile);
-
-                // Extract data
-                Element root = doc.getDocumentElement();
-                String nameUae = root.getElementsByTagName("nameUae").item(0).getTextContent();
-                String nameSchool = root.getElementsByTagName("nameSchool").item(0).getTextContent();
-                String villeSchool = root.getElementsByTagName("villeSchool").item(0).getTextContent();
-                String lastName = root.getElementsByTagName("lastName").item(0).getTextContent();
-                String firstName = root.getElementsByTagName("firstName").item(0).getTextContent();
-                String codeApoge = root.getElementsByTagName("codeApoge").item(0).getTextContent();
-                String footer = root.getElementsByTagName("footer").item(0).getTextContent();
-
-                // Generate PDF
-                generateStudentCardPdf(nameUae, nameSchool, villeSchool, lastName, firstName, codeApoge, footer);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                showError("Erreur", "Une erreur est survenue lors de la génération du PDF : " + e.getMessage());
-            }
-        }
-    }
-
-    private void generateStudentCardPdf(String nameUae, String nameSchool, String villeSchool, String lastName,
-                                        String firstName, String codeApoge, String footer) throws IOException {
-        String userHome = System.getProperty("user.home");
-        String downloadPath = userHome + "/Downloads/Carte_Etudiant.pdf";
-
-        PDDocument document = new PDDocument();
-        PDPage page = new PDPage();
-        document.addPage(page);
-
-        try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
-            contentStream.beginText();
-            contentStream.setLeading(20f);
-            contentStream.newLineAtOffset(50, 750);
-            contentStream.showText("CARTE D'ETUDIANT");
-            contentStream.newLine();
-
-            contentStream.setFont(PDType1Font.HELVETICA, 12);
-            contentStream.showText("Université: " + nameUae);
-            contentStream.newLine();
-            contentStream.showText("Ecole: " + nameSchool);
-            contentStream.newLine();
-            contentStream.showText("Ville: " + villeSchool);
-            contentStream.newLine();
-            contentStream.showText("Nom: " + lastName);
-            contentStream.newLine();
-            contentStream.showText("Prénom: " + firstName);
-            contentStream.newLine();
-            contentStream.showText("Code Apogée: " + codeApoge);
-            contentStream.newLine();
-            contentStream.showText("Note: " + footer);
-            contentStream.endText();
-        }
-
-        document.save(downloadPath);
-        document.close();
-        showInfo("Succès", "PDF généré avec succès dans :  Téléchargement de votre pc  ");
-    }
-
-    // Generate "Emploi du Temps" PDF
+    private ComboBox<String> studentComboBox;
     @FXML
-    public void handleGenerateTimetablePdf() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-        File selectedFile = fileChooser.showOpenDialog(new Stage());
+    private ComboBox<String> weekComboBox;
 
-        if (selectedFile != null) {
-            try {
-                // Parse XML File
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder builder = factory.newDocumentBuilder();
-                Document doc = builder.parse(selectedFile);
-
-                // Generate the timetable PDF
-                generateTimetablePdf(doc);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                showError("Erreur", "Une erreur est survenue lors de la génération du PDF : " + e.getMessage());
-            }
-        }
+    // Initialisation du contrôleur
+    public void initialize() {
+        loadStudentsFromXml();
+        loadWeeksFromXml();
     }
 
-    private void generateTimetablePdf(Document doc) throws IOException {
-        String userHome = System.getProperty("user.home");
-        String downloadPath = userHome + "/Downloads/Emploi_du_Temps.pdf";
-
-        PDDocument document = new PDDocument();
-        PDPage page = new PDPage();
-        document.addPage(page);
-
-        float margin = 50;
-        float startY = 700;
-        float tableWidth = page.getMediaBox().getWidth() - 2 * margin;
-        float cellHeight = 20;
-        float rowHeight = 20;
-        int columns = 5;
-        float cellWidth = tableWidth / columns;
-
-        String[] headers = {"Jour", "Heure", "Matière", "Enseignant", "Salle"};
-
-        PDPageContentStream contentStream = new PDPageContentStream(document, page);
+    // Charger les noms des étudiants dans le ComboBox
+    private void loadStudentsFromXml() {
         try {
-            // Title
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-            contentStream.beginText();
-            contentStream.newLineAtOffset(220, 750);
-            contentStream.showText("Emploi du Temps");
-            contentStream.endText();
+            // Charger le fichier XML
+            File xmlFile = new File("src/main/resources/xml/students.xml");
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(xmlFile);
 
-            // Draw header row
-            drawRow(contentStream, headers, margin, startY, cellWidth, cellHeight, true);
+            // Normaliser le document XML
+            document.getDocumentElement().normalize();
 
-            // Parse XML data
-            NodeList days = doc.getElementsByTagName("day");
-            contentStream.setFont(PDType1Font.HELVETICA, 10);
+            // Récupérer tous les éléments <student>
+            NodeList studentNodes = document.getElementsByTagName("student");
 
-            float currentY = startY - rowHeight;
+            // Parcourir les étudiants
+            for (int i = 0; i < studentNodes.getLength(); i++) {
+                Node node = studentNodes.item(i);
 
-            for (int i = 0; i < days.getLength(); i++) {
-                Element day = (Element) days.item(i);
-                String dayName = day.getAttribute("name");
-                NodeList slots = day.getElementsByTagName("slot");
+                if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element studentElement = (Element) node;
 
-                for (int j = 0; j < slots.getLength(); j++) {
-                    Element slot = (Element) slots.item(j);
+                    // Vérifier si les balises <nom> et <prenom> existent
+                    Node nameNode = studentElement.getElementsByTagName("nom").item(0);
+                    Node surnameNode = studentElement.getElementsByTagName("prenom").item(0);
 
-                    String time = slot.getAttribute("time");
-                    String subject = slot.getElementsByTagName("subject").item(0).getTextContent();
-                    String teacher = slot.getElementsByTagName("teacher").item(0).getTextContent();
-                    String room = slot.getElementsByTagName("room").item(0).getTextContent();
+                    if (nameNode != null && surnameNode != null) {
+                        String nom = nameNode.getTextContent();
+                        String prenom = surnameNode.getTextContent();
+                        String fullName = nom + " " + prenom;
 
-                    String[] rowData = {dayName, time, subject, teacher, room};
-
-                    // Draw the row
-                    drawRow(contentStream, rowData, margin, currentY, cellWidth, cellHeight, false);
-                    currentY -= rowHeight;
-
-                    // Check if we need a new page
-                    if (currentY < 50) {
-                        contentStream.close(); // Close the current content stream
-                        page = new PDPage();
-                        document.addPage(page);
-                        contentStream = new PDPageContentStream(document, page); // Open a new content stream
-                        currentY = 700; // Reset starting position
-                        drawRow(contentStream, headers, margin, currentY, cellWidth, cellHeight, true); // Redraw headers
-                        currentY -= rowHeight;
-                    }
-
-                    // Clear day name for subsequent rows on the same day
-                    if (j > 0) {
-                        dayName = "";
+                        // Ajouter le nom complet au ComboBox
+                        studentComboBox.getItems().add(fullName);
+                    } else {
+                        System.err.println("Balises <nom> ou <prenom> manquantes pour un étudiant.");
                     }
                 }
             }
-        } finally {
-            contentStream.close(); // Ensure the content stream is closed
-        }
 
-        document.save(downloadPath);
-        document.close();
-        showInfo("Succès", "PDF généré avec succès dans :  Téléchargement de votre pc  ");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    // Helper method to draw a row
-    private void drawRow(PDPageContentStream contentStream, String[] rowData, float startX, float startY, float cellWidth, float cellHeight, boolean isHeader) throws IOException {
-        // Draw the row borders
-        float nextX = startX;
-        for (int i = 0; i < rowData.length; i++) {
-            contentStream.addRect(nextX, startY - cellHeight, cellWidth, cellHeight); // Draw the cell border
-            contentStream.stroke(); // Apply the border stroke
-            nextX += cellWidth;
-        }
+    // Obtenir le chemin du dossier Téléchargements
+    private String getDownloadsFolderPath() {
+        String userHome = System.getProperty("user.home");
+        return userHome + File.separator + "Downloads";
+    }
 
-        // Write the text inside the cells
-        float textX = startX + 5; // Padding for text
-        float textY = startY - 15;
 
-        for (int i = 0; i < rowData.length; i++) {
-            contentStream.beginText(); // Begin text block
-            if (isHeader) {
-                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12); // Bold for header
-            } else {
-                contentStream.setFont(PDType1Font.HELVETICA, 10); // Regular font for rows
+
+
+
+    private void loadWeeksFromXml() {
+        try {
+            // Load the emploi.xml file
+            File xmlFile = new File("src/main/resources/xml/emploi.xml");
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(xmlFile);
+            document.getDocumentElement().normalize();
+
+            // Extract all <week> elements
+            NodeList weekNodes = document.getElementsByTagName("week");
+
+            // Iterate through the weeks and add their numbers to the ComboBox
+            for (int i = 0; i < weekNodes.getLength(); i++) {
+                Node weekNode = weekNodes.item(i);
+                if (weekNode != null && weekNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element weekElement = (Element) weekNode;
+                    String weekNumber = weekElement.getAttribute("number");
+                    if (weekNumber != null && !weekNumber.isEmpty()) {
+                        // Add "Week <number>" to the ComboBox
+                        weekComboBox.getItems().add("Week " + weekNumber);
+                    }
+                }
             }
-            contentStream.newLineAtOffset(textX, textY); // Move to cell position
-            contentStream.showText(rowData[i]); // Write cell text
-            contentStream.endText(); // End text block
-            textX += cellWidth; // Move to the next cell
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    // Helper method to get the week from a date
+    private String getWeekFromDate(String date) {
+        // Simplistic approach: You can refine this based on your actual week logic
+        return "Week of " + date;
+    }
+
+
+
+
+
+
+
+    // Gérer la génération du PDF de la carte étudiant
+    @FXML
+    private void handleGenerateStudentCardPdf() {
+        String selectedStudent = studentComboBox.getValue();
+        if (selectedStudent == null) {
+            showAlert("Veuillez sélectionner un étudiant avant de générer le PDF.");
+            return;
+        }
+
+        try {
+            // Diviser le nom complet en nom et prénom
+            String[] parts = selectedStudent.split(" ", 2);
+            String nom = parts[0];
+            String prenom = (parts.length > 1) ? parts[1] : "";
+
+            // Créer un nom de fichier basé sur le nom et prénom
+            String outputFileName = nom + "_" + prenom + "_student_card.pdf";
+
+            // Filtrer les données XML pour l'étudiant sélectionné
+            String filteredXmlPath = filterStudentXml("src/main/resources/xml/students.xml", selectedStudent);
+
+            // Générer le PDF avec le nom dynamique
+            generatePdf(filteredXmlPath, "src/main/resources/xml/student_card.xslt", outputFileName);
+
+            showAlert("PDF Carte Étudiant généré avec succès !");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Erreur lors de la génération du PDF : " + e.getMessage());
         }
     }
 
-    private void showError(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
+
+    // Méthode pour filtrer les données XML pour l'étudiant sélectionné
+    private String filterStudentXml(String originalXmlPath, String fullName) throws Exception {
+        // Chemin du fichier XML temporaire
+        String tempXmlPath = getDownloadsFolderPath() + File.separator + "filtered_student.xml";
+
+        // Charger le fichier XML original
+        File xmlFile = new File(originalXmlPath);
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.parse(xmlFile);
+
+        // Normaliser le document XML
+        document.getDocumentElement().normalize();
+
+        // Créer un nouveau document XML pour l'étudiant filtré
+        Document filteredDocument = builder.newDocument();
+        Element rootElement = filteredDocument.createElement("students");
+        filteredDocument.appendChild(rootElement);
+
+        // Diviser le nom complet en nom et prénom
+        String[] parts = fullName.split(" ", 2);
+        String selectedNom = parts[0];
+        String selectedPrenom = (parts.length > 1) ? parts[1] : "";
+
+        // Trouver l'étudiant correspondant au nom et prénom
+        NodeList studentNodes = document.getElementsByTagName("student");
+        for (int i = 0; i < studentNodes.getLength(); i++) {
+            Node node = studentNodes.item(i);
+
+            if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
+                Element studentElement = (Element) node;
+
+                String nom = studentElement.getElementsByTagName("nom").item(0).getTextContent();
+                String prenom = studentElement.getElementsByTagName("prenom").item(0).getTextContent();
+
+                if (selectedNom.equals(nom) && selectedPrenom.equals(prenom)) {
+                    // Importer l'élément étudiant dans le nouveau document
+                    Node importedNode = filteredDocument.importNode(studentElement, true);
+                    rootElement.appendChild(importedNode);
+                    break;
+                }
+            }
+        }
+
+        // Écrire le nouveau document XML dans un fichier temporaire
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource source = new DOMSource(filteredDocument);
+        StreamResult result = new StreamResult(new File(tempXmlPath));
+        transformer.transform(source, result);
+
+        return tempXmlPath;
     }
 
-    private void showInfo(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
+
+
+
+
+
+
 
 
     @FXML
-    public void handleGenerateRelevePdf() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-        File selectedFile = fileChooser.showOpenDialog(new Stage());
+    private void handleGenerateTimetablePdf() {
+        String selectedWeek = weekComboBox.getValue();
+        if (selectedWeek == null) {
+            showAlert("Veuillez sélectionner une semaine avant de générer le PDF.");
+            return;
+        }
 
-        if (selectedFile != null) {
-            try {
-                // Parse XML File
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder builder = factory.newDocumentBuilder();
-                Document doc = builder.parse(selectedFile);
+        try {
+            // Filter XML for the selected week
+            String filteredXmlPath = filterTimetableXml("src/main/resources/xml/emploi.xml", selectedWeek);
 
-                // Generate the Relevé PDF
-                generateRelevePdf(doc);
+            // Generate PDF for the timetable
+            String outputFileName = "Timetable_" + selectedWeek.replaceAll("[^a-zA-Z0-9_]", "_") + ".pdf";
+            generatePdf(filteredXmlPath, "src/main/resources/xml/emploi.xslt", outputFileName);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-                showError("Erreur", "Une erreur est survenue lors de la génération du PDF : " + e.getMessage());
-            }
+            showAlert("PDF Emploi du Temps généré avec succès !");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Erreur lors de la génération du PDF : " + e.getMessage());
         }
     }
 
-    private void generateRelevePdf(Document doc) throws IOException {
-        String userHome = System.getProperty("user.home");
-        String downloadPath = userHome + "/Downloads/Releve_Notes.pdf";
 
-        PDDocument document = new PDDocument();
-        PDPage page = new PDPage();
-        document.addPage(page);
+    private String filterTimetableXml(String originalXmlPath, String selectedWeek) throws Exception {
+        String tempXmlPath = getDownloadsFolderPath() + File.separator + "filtered_timetable.xml";
 
-        float margin = 50;
-        float startY = 700;
-        float tableWidth = page.getMediaBox().getWidth() - 2 * margin;
-        float cellHeight = 20;
-        float rowHeight = 20;
-        int columns = 4;
-        float cellWidth = tableWidth / columns;
+        // Extract the week number from the selectedWeek string (e.g., "Week 1" -> "1")
+        String weekNumber = selectedWeek.split(" ")[1];
 
-        String[] headers = {"MODULE", "MOYENNE", "RESULTAT", "SESSION"};
-        float currentY = startY;
+        // Load the original XML
+        File xmlFile = new File(originalXmlPath);
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.parse(xmlFile);
+        document.getDocumentElement().normalize();
 
-        try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
-            // Title
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-            contentStream.beginText();
-            contentStream.newLineAtOffset(50, 750);
-            contentStream.showText("UNIVERSITE ABDELMALEK ESSAADI");
-            contentStream.newLine();
-            contentStream.showText("Ecole Nationale des Sciences Appliquées de Tanger");
-            contentStream.newLine();
-            contentStream.showText("Année universitaire : " + doc.getElementsByTagName("anneeUniversitaire").item(0).getTextContent());
-            contentStream.newLine();
-            contentStream.endText();
+        // Create a new filtered XML document
+        Document filteredDocument = builder.newDocument();
+        Element rootElement = filteredDocument.createElement("schedule");
+        filteredDocument.appendChild(rootElement);
 
-            // Draw the header row
-            drawRow(contentStream, headers, margin, currentY, cellWidth, cellHeight, true);
-            currentY -= rowHeight;
+        // Find the matching <week> element
+        NodeList weekNodes = document.getElementsByTagName("week");
+        for (int i = 0; i < weekNodes.getLength(); i++) {
+            Node weekNode = weekNodes.item(i);
+            if (weekNode != null && weekNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element weekElement = (Element) weekNode;
+                if (weekElement.getAttribute("number").equals(weekNumber)) {
+                    // Import the matching week into the new document
+                    Node importedNode = filteredDocument.importNode(weekElement, true);
+                    rootElement.appendChild(importedNode);
+                    break;
+                }
+            }
         }
 
-        NodeList modules = doc.getElementsByTagName("module");
+        // Write the filtered document to a temporary file
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource source = new DOMSource(filteredDocument);
+        StreamResult result = new StreamResult(new File(tempXmlPath));
+        transformer.transform(source, result);
 
-        for (int i = 0; i < modules.getLength(); i++) {
-            if (currentY < 50) {
-                // Create a new page and reset currentY
-                page = new PDPage();
-                document.addPage(page);
-                currentY = startY;
+        return tempXmlPath;
+    }
 
-                try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
-                    // Redraw the header row on the new page
-                    drawRow(contentStream, headers, margin, currentY, cellWidth, cellHeight, true);
-                    currentY -= rowHeight;
+
+
+
+
+
+//    releve de note
+@FXML
+private void handleGenerateRelevePdf() {
+    String selectedStudent = studentComboBox.getValue();
+    if (selectedStudent == null) {
+        showAlert("Veuillez sélectionner un étudiant avant de générer le relevé de notes.");
+        return;
+    }
+
+    try {
+        String filteredXmlPath = filterStudentXml("src/main/resources/xml/releve-note.xml", selectedStudent);
+        String outputFileName = selectedStudent.replaceAll(" ", "_") + "_releve_notes.pdf";
+        generatePdf(filteredXmlPath, "src/main/resources/xml/releve-note.xslt", outputFileName);
+        showAlert("PDF Relevé de Notes généré avec succès !");
+    } catch (Exception e) {
+        e.printStackTrace();
+        showAlert("Erreur lors de la génération du PDF : " + e.getMessage());
+    }
+}
+
+
+
+
+
+
+
+
+    // Méthode pour générer le PDF
+    private void generatePdf(String xmlPath, String xsltPath, String outputFileName) {
+        try {
+            // Obtenir le chemin du dossier Téléchargements
+            String downloadsFolder = getDownloadsFolderPath();
+            String outputPdfPath = downloadsFolder + File.separator + outputFileName;
+
+            // Transformer XML to XSL-FO
+            Source xmlSource = new StreamSource(new File(xmlPath));
+            Source xsltSource = new StreamSource(new File(xsltPath));
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer(xsltSource);
+
+            File xslFoFile = new File(downloadsFolder + File.separator + "intermediate.fo");
+            try (OutputStream foOutputStream = new FileOutputStream(xslFoFile)) {
+                transformer.transform(xmlSource, new StreamResult(foOutputStream));
+            }
+
+            // Render XSL-FO to PDF using Apache FOP
+            File pdfFile = new File(outputPdfPath);
+            try (OutputStream pdfOutputStream = new FileOutputStream(pdfFile)) {
+                FopFactory fopFactory = FopFactory.newInstance(new File(".").toURI());
+                FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
+
+                Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, foUserAgent, pdfOutputStream);
+                TransformerFactory tf = TransformerFactory.newInstance();
+                Transformer pdfTransformer = tf.newTransformer();
+
+                try (InputStream foInputStream = new FileInputStream(xslFoFile)) {
+                    Source foSource = new StreamSource(foInputStream);
+                    pdfTransformer.transform(foSource, new SAXResult(fop.getDefaultHandler()));
                 }
             }
 
-            Element module = (Element) modules.item(i);
-            String moduleName = module.getElementsByTagName("nom").item(0).getTextContent();
-            String moyenne = module.getElementsByTagName("moyenne").item(0).getTextContent();
-            String resultat = module.getElementsByTagName("resultat").item(0).getTextContent();
-            String session = module.getElementsByTagName("session").item(0).getTextContent();
-
-            String[] rowData = {moduleName, moyenne, resultat, session};
-
-            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
-                // Draw the row
-                drawRow(contentStream, rowData, margin, currentY, cellWidth, cellHeight, false);
-                currentY -= rowHeight;
-            }
+            showAlert("PDF généré avec succès dans le dossier Téléchargements !");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Erreur lors de la génération du PDF : " + e.getMessage());
         }
-
-        document.save(downloadPath);
-        document.close();
-        showInfo("Succès", "PDF généré avec succès dans : " + downloadPath);
     }
 
+    // Méthode pour afficher des alertes
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

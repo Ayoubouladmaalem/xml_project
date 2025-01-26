@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.w3.org/1999/XSL/Format"
+           xmlns="http://www.w3.org/1999/XSL/Format"
+           elementFormDefault="qualified">
+
+    <!-- Root element -->
+    <xs:element name="root" type="RootType"/>
+
+    <xs:complexType name="RootType">
+        <xs:sequence>
+            <xs:element name="layout-master-set" type="LayoutMasterSetType"/>
+            <xs:element name="page-sequence" type="PageSequenceType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LayoutMasterSetType">
+        <xs:sequence>
+            <xs:element name="simple-page-master" type="SimplePageMasterType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SimplePageMasterType">
+        <xs:sequence>
+            <xs:element name="region-body" type="RegionBodyType" minOccurs="0"/>
+            <xs:element name="region-before" type="RegionType" minOccurs="0"/>
+            <xs:element name="region-after" type="RegionType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="master-name" type="xs:string" use="required"/>
+        <xs:attribute name="page-height" type="xs:string"/>
+        <xs:attribute name="page-width" type="xs:string"/>
+        <xs:attribute name="margin" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="RegionBodyType">
+        <xs:attribute name="margin-top" type="xs:string"/>
+        <xs:attribute name="margin-bottom" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="RegionType">
+        <xs:attribute name="extent" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="PageSequenceType">
+        <xs:sequence>
+            <xs:element name="flow" type="FlowType"/>
+        </xs:sequence>
+        <xs:attribute name="master-reference" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="FlowType">
+        <xs:sequence>
+            <xs:element name="block" type="BlockType" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="flow-name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="BlockType">
+        <xs:sequence>
+            <xs:element name="text" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="font-size" type="xs:string"/>
+        <xs:attribute name="font-family" type="xs:string"/>
+        <xs:attribute name="text-align" type="xs:string"/>
+        <xs:attribute name="space-after" type="xs:string"/>
+    </xs:complexType>
+</xs:schema>
