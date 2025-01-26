@@ -5,6 +5,7 @@ module org.ecole.application_scolaire {
     requires org.apache.poi.ooxml;
     requires javafx.web;
     requires java.desktop;
+    requires org.apache.pdfbox;
 
     opens org.ecole.application_scolaire to javafx.fxml;
     exports org.ecole.application_scolaire;
