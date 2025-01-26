@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 
 <?import java.net.URL?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ecole.application_scolaire.DashboardController" fx:id="root">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ecole.application_scolaire.Dashboard.DashboardController" fx:id="root">
     <stylesheets>
         <URL value="@css/style.css"/>
     </stylesheets>
@@ -16,7 +16,7 @@
         <VBox spacing="15" styleClass="sidebar">
             <!-- Logo at the top -->
             <ImageView fx:id="sidebarLogo" styleClass="sidebar-logo" fitWidth="150" fitHeight="150">
-                <Image url="@images/Ensa2.png"/> <!-- Adjust path to your logo image -->
+                <Image url="@images/Ensa.png"/> <!-- Adjust path to your logo image -->
             </ImageView>
 
             <!-- Sidebar items in the center -->
@@ -24,7 +24,7 @@
                 <Text text="Conversion Excel to XML" fx:id="btnConversion" onMouseClicked="#showConversionContent" styleClass="sidebar-item"/>
                 <Text text="Affichage" fx:id="btnAffichage" onMouseClicked="#showAffichageContent" styleClass="sidebar-item"/>
                 <Text text="Document" fx:id="btnDocument" onMouseClicked="#showDocumentContent" styleClass="sidebar-item"/>
-                <Text text="Liste TPS" fx:id="btnListeTPS" onMouseClicked="#showListeTPSContent" styleClass="sidebar-item"/>
+                <Text text="Liste TP" fx:id="btnListeTPS" onMouseClicked="#showListeTPSContent" styleClass="sidebar-item"/>
             </VBox>
         </VBox>
     </left>

@@ -9,14 +9,14 @@
 <?import java.net.URL?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ecole.application_scolaire.Dashboard.DashboardController" fx:id="root">
     <stylesheets>
-        <URL value="@../css/style.css"/>
+        <URL value="@css/style.css"/>
     </stylesheets>
     <!-- Sidebar -->
     <left>
         <VBox spacing="15" styleClass="sidebar">
             <!-- Logo at the top -->
             <ImageView fx:id="sidebarLogo" styleClass="sidebar-logo" fitWidth="150" fitHeight="150">
-                <Image url="@../images/Ensa.png"/> <!-- Adjust path to your logo image -->
+                <Image url="@images/Ensa.png"/> <!-- Adjust path to your logo image -->
             </ImageView>
 
             <!-- Sidebar items in the center -->

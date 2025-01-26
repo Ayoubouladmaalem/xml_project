@@ -1,0 +1,59 @@
+/* Base style */
+* {
+    font-family: "Arial", sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* Style for the AnchorPane */
+.root {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 20px;
+}
+
+/* Title or content text */
+#contentText {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-fill: #2a2a2a;
+}
+
+/* Button styles */
+.action-button {
+    -fx-background-color: #2196F3; /* Blue color */
+    -fx-text-fill: white;
+    -fx-padding: 10px 15px;
+    -fx-border-radius: 5px;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.action-button:hover {
+    -fx-background-color: #1976D2; /* Darker blue on hover */
+}
+
+/* Text style before upload button */
+.info-text {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-fill: #2a2a2a;
+}
+
+/* Status label */
+.status-label {
+    -fx-font-size: 12px;
+    -fx-fill: #888888;
+    -fx-font-style: italic;
+}
+
+
+/* Button styles for XML file */
+#viewXmlButton {
+    -fx-background-color: #2196F3; /* Blue color */
+    -fx-text-fill: white;
+    -fx-padding: 10px 15px;
+    -fx-border-radius: 5px;
+}
+
+#viewXmlButton:hover {
+    -fx-background-color: #1976D2; /* Darker blue on hover */
+}
