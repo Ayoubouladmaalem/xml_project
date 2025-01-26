@@ -173,59 +173,46 @@ public class DocumentController {
 
     // Méthode pour filtrer les données XML pour l'étudiant sélectionné
     private String filterStudentXml(String originalXmlPath, String fullName) throws Exception {
-        String tempXmlPath = getDownloadsFolderPath() + File.separator + "filtered_releve_note.xml";
+        // Chemin du fichier XML temporaire
+        String tempXmlPath = getDownloadsFolderPath() + File.separator + "filtered_student.xml";
 
         // Charger le fichier XML original
         File xmlFile = new File(originalXmlPath);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(xmlFile);
+
+        // Normaliser le document XML
         document.getDocumentElement().normalize();
 
         // Créer un nouveau document XML pour l'étudiant filtré
         Document filteredDocument = builder.newDocument();
-        Element rootElement = filteredDocument.createElement("releveNotes");
+        Element rootElement = filteredDocument.createElement("students");
         filteredDocument.appendChild(rootElement);
 
         // Diviser le nom complet en nom et prénom
         String[] parts = fullName.split(" ", 2);
-        String selectedNom = parts[0].trim();
-        String selectedPrenom = (parts.length > 1) ? parts[1].trim() : "";
+        String selectedNom = parts[0];
+        String selectedPrenom = (parts.length > 1) ? parts[1] : "";
 
-        // Rechercher l'étudiant dans le fichier XML
-        NodeList etudiantNodes = document.getElementsByTagName("etudiant");
-        NodeList modulesNodes = document.getElementsByTagName("modules");
-        boolean found = false;
+        // Trouver l'étudiant correspondant au nom et prénom
+        NodeList studentNodes = document.getElementsByTagName("student");
+        for (int i = 0; i < studentNodes.getLength(); i++) {
+            Node node = studentNodes.item(i);
 
-        for (int i = 0; i < etudiantNodes.getLength(); i++) {
-            Node etudiantNode = etudiantNodes.item(i);
+            if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
+                Element studentElement = (Element) node;
 
-            if (etudiantNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element etudiantElement = (Element) etudiantNode;
+                String nom = studentElement.getElementsByTagName("nom").item(0).getTextContent();
+                String prenom = studentElement.getElementsByTagName("prenom").item(0).getTextContent();
 
-                String nom = etudiantElement.getElementsByTagName("nom").item(0).getTextContent().trim();
-                String prenom = etudiantElement.getElementsByTagName("prenom").item(0).getTextContent().trim();
-
-                if (selectedNom.equalsIgnoreCase(nom) && selectedPrenom.equalsIgnoreCase(prenom)) {
-                    // Importer l'étudiant dans le document filtré
-                    Node importedEtudiant = filteredDocument.importNode(etudiantElement, true);
-                    rootElement.appendChild(importedEtudiant);
-
-                    // Ajouter les modules correspondants
-                    if (i < modulesNodes.getLength()) {
-                        Node modulesNode = modulesNodes.item(i);
-                        Node importedModules = filteredDocument.importNode(modulesNode, true);
-                        rootElement.appendChild(importedModules);
-                    }
-
-                    found = true;
+                if (selectedNom.equals(nom) && selectedPrenom.equals(prenom)) {
+                    // Importer l'élément étudiant dans le nouveau document
+                    Node importedNode = filteredDocument.importNode(studentElement, true);
+                    rootElement.appendChild(importedNode);
                     break;
                 }
             }
-        }
-
-        if (!found) {
-            throw new Exception("Étudiant non trouvé dans le fichier XML.");
         }
 
         // Écrire le nouveau document XML dans un fichier temporaire
@@ -237,6 +224,8 @@ public class DocumentController {
 
         return tempXmlPath;
     }
+
+
 
 
 
@@ -315,26 +304,6 @@ public class DocumentController {
 
 
 
-
-//    releve de note
-@FXML
-private void handleGenerateRelevePdf() {
-    String selectedStudent = studentComboBox.getValue();
-    if (selectedStudent == null) {
-        showAlert("Veuillez sélectionner un étudiant avant de générer le relevé de notes.");
-        return;
-    }
-
-    try {
-        String filteredXmlPath = filterStudentXml("src/main/resources/xml/releve-note.xml", selectedStudent);
-        String outputFileName = selectedStudent.replaceAll(" ", "_") + "_releve_notes.pdf";
-        generatePdf(filteredXmlPath, "src/main/resources/xml/releve-note.xslt", outputFileName);
-        showAlert("PDF Relevé de Notes généré avec succès !");
-    } catch (Exception e) {
-        e.printStackTrace();
-        showAlert("Erreur lors de la génération du PDF : " + e.getMessage());
-    }
-}
 
 
 
