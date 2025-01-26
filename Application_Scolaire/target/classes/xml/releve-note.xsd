@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
     <xs:element name="releveNotes">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="etudiant" type="EtudiantType"/>
-                <xs:element name="modules">
+                <xs:element name="etudiant" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="module" type="ModuleType" maxOccurs="unbounded"/>
+                            <xs:element name="nom" type="xs:string"/>
+                            <xs:element name="prenom" type="xs:string"/>
+                            <xs:element name="cne" type="xs:string"/>
+                            <xs:element name="dateNaissance" type="xs:string"/>
+                            <xs:element name="lieuNaissance" type="xs:string"/>
+                            <xs:element name="classe" type="xs:string"/>
+                            <xs:element name="anneeUniversitaire" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="modules" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="module" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="nom" type="xs:string"/>
+                                        <xs:element name="moyenne" type="xs:decimal"/>
+                                        <xs:element name="resultat" type="xs:string"/>
+                                        <xs:element name="session" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -16,25 +37,4 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-
-    <xs:complexType name="EtudiantType">
-        <xs:sequence>
-            <xs:element name="nom" type="xs:string"/>
-            <xs:element name="prenom" type="xs:string"/>
-            <xs:element name="cne" type="xs:string"/>
-            <xs:element name="dateNaissance" type="xs:date"/>
-            <xs:element name="lieuNaissance" type="xs:string"/>
-            <xs:element name="classe" type="xs:string"/>
-            <xs:element name="anneeUniversitaire" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:complexType name="ModuleType">
-        <xs:sequence>
-            <xs:element name="nom" type="xs:string"/>
-            <xs:element name="moyenne" type="xs:decimal"/>
-            <xs:element name="resultat" type="xs:string"/>
-            <xs:element name="session" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
 </xs:schema>
