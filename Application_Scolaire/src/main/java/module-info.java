@@ -1,9 +1,9 @@
 module org.ecole.application_scolaire {
-    requires javafx.controls;
     requires javafx.fxml;
 
     requires com.dlsc.formsfx;
     requires org.apache.poi.ooxml;
+    requires javafx.web;
     requires java.desktop;
 
     opens org.ecole.application_scolaire to javafx.fxml;

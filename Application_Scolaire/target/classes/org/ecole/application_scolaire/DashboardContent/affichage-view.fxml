@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.web.WebView?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import java.net.URL?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.ecole.application_scolaire.Dashboard.AffichageController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="800.0" prefWidth="600.0">
+    <stylesheets>
+        <URL value="@../css/affichage.css"/> <!-- Link to your CSS file -->
+    </stylesheets>
 
+    <!-- Label for Normal View -->
+    <Label text="Affichage normale"
+           layoutX="10" layoutY="40"
+           styleClass="info-text" />
+
+    <!-- Button to upload XML -->
+    <Button text="Upload XML des étudiants avec leurs notes"
+            onAction="#handleFileUpload"
+            layoutX="10" layoutY="70"
+            styleClass="action-button" />
+
+    <!-- WebView to display the normal HTML -->
+    <WebView fx:id="webViewNormal"
+             layoutX="10" layoutY="130"
+             prefWidth="580.0" prefHeight="300.0" />
+
+    <!-- Label for Rattrapage View -->
+    <Label text="Affichage après rattrapage"
+           layoutX="10" layoutY="450"
+           styleClass="info-text" />
+
+    <!-- WebView to display the rattrapage HTML -->
+    <WebView fx:id="webViewRattrapage"
+             layoutX="10" layoutY="490"
+             prefWidth="580.0" prefHeight="300.0" />
 </AnchorPane>
