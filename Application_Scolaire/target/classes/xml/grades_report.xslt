@@ -60,9 +60,6 @@
                                     <fo:table-cell background-color="#CCCCCC">
                                         <fo:block font-weight="bold">RESULTAT</fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell background-color="#CCCCCC">
-                                        <fo:block font-weight="bold">SESSION</fo:block>
-                                    </fo:table-cell>
                                 </fo:table-row>
                             </fo:table-header>
                             <fo:table-body>
@@ -98,9 +95,6 @@
                                                     <xsl:otherwise>NV</xsl:otherwise>
                                                 </xsl:choose>
                                             </fo:block>
-                                        </fo:table-cell>
-                                        <fo:table-cell>
-                                            <fo:block>S1 2023-2024</fo:block>
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:for-each>

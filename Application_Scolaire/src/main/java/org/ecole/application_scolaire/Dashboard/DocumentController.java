@@ -135,19 +135,16 @@ public class DocumentController {
         Element rootElement = filteredDocument.createElement("students");
         filteredDocument.appendChild(rootElement);
 
-        String[] parts = fullName.split(" ", 2);
-        String selectedNom = parts[0];
-        String selectedPrenom = (parts.length > 1) ? parts[1] : "";
-
         NodeList studentNodes = document.getElementsByTagName("student");
         for (int i = 0; i < studentNodes.getLength(); i++) {
             Node node = studentNodes.item(i);
             if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
                 Element studentElement = (Element) node;
-                String nom = studentElement.getElementsByTagName("nom").item(0).getTextContent();
-                String prenom = studentElement.getElementsByTagName("prenom").item(0).getTextContent();
+                String nom = studentElement.getElementsByTagName("nom").item(0).getTextContent().trim();
+                String prenom = studentElement.getElementsByTagName("prenom").item(0).getTextContent().trim();
 
-                if (selectedNom.equals(nom) && selectedPrenom.equals(prenom)) {
+                String xmlFullName = nom + " " + prenom; // Reconstruisez le nom complet
+                if (fullName.trim().equalsIgnoreCase(xmlFullName)) { // Comparez les noms complets
                     Node importedNode = filteredDocument.importNode(studentElement, true);
                     rootElement.appendChild(importedNode);
                     break;
@@ -402,6 +399,7 @@ public class DocumentController {
             return;
         }
 
+
         try {
             // Diviser le nom complet en nom et prénom
             String[] parts = selectedStudent.split(" ", 2);
@@ -415,7 +413,7 @@ public class DocumentController {
             Document document = builder.parse(xmlFile);
             document.getDocumentElement().normalize();
 
-            // Récupérer le code_apogee de l'étudiant sélectionné
+            // Recherche directe du Code Apogée basé sur le nom complet
             NodeList studentNodes = document.getElementsByTagName("student");
             String codeApogee = null;
             for (int i = 0; i < studentNodes.getLength(); i++) {
@@ -423,10 +421,11 @@ public class DocumentController {
                 if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
                     Element studentElement = (Element) node;
 
-                    String studentNom = studentElement.getElementsByTagName("nom").item(0).getTextContent();
-                    String studentPrenom = studentElement.getElementsByTagName("prenom").item(0).getTextContent();
+                    String studentNom = studentElement.getElementsByTagName("nom").item(0).getTextContent().trim();
+                    String studentPrenom = studentElement.getElementsByTagName("prenom").item(0).getTextContent().trim();
 
-                    if (nom.equals(studentNom) && prenom.equals(studentPrenom)) {
+                    String xmlFullName = studentNom + " " + studentPrenom;
+                    if (selectedStudent.trim().equalsIgnoreCase(xmlFullName)) {
                         codeApogee = studentElement.getElementsByTagName("code_apogee").item(0).getTextContent();
                         break;
                     }

@@ -7,25 +7,29 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ecole.application_scolaire.Dashboard.DocumentController">
 
+    <!-- Title -->
+    <Label layoutX="20" layoutY="20" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Génération de Documents" />
+
     <!-- Select Student -->
-    <Label layoutX="20" layoutY="70" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Sélectionnez un étudiant :" />
-    <ComboBox fx:id="studentComboBox" layoutX="20" layoutY="100" prefWidth="200" />
+    <Label layoutX="200" layoutY="50" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Sélectionnez un étudiant :" />
+    <ComboBox fx:id="studentComboBox" layoutX="200" layoutY="80" prefWidth="200" />
 
     <!-- Carte Étudiant Section -->
-    <Button layoutX="20" layoutY="150" onAction="#handleGenerateStudentCardPdf" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Générer Carte Étudiant PDF" />
-    <Button layoutX="23.0" layoutY="183.0" onAction="#handleGenerateAttestation" prefHeight="25.0" prefWidth="161.0" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Generer Attestation" />
+    <Label layoutX="200" layoutY="120" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Pour générer la carte étudiant :" />
+    <Button layoutX="200" layoutY="150" onAction="#handleGenerateStudentCardPdf" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Générer Carte Étudiant PDF" />
+
+    <!-- Attestation de Scolarité Section -->
+    <Label layoutX="200" layoutY="190" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Pour générer l'attestation de scolarité :" />
+    <Button layoutX="200" layoutY="220" onAction="#handleGenerateAttestation" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Générer Attestation PDF" />
+
+    <!-- Relevé de Notes Section -->
+    <Label layoutX="200" layoutY="260" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Pour générer le relevé de notes :" />
+    <Button layoutX="200" layoutY="290" onAction="#handleGenerateGradesPdf" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Générer Relevé de Notes PDF" />
 
     <!-- Timetable Section -->
-    <!-- Timetable Section -->
-    <Label layoutX="20" layoutY="220" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Sélectionnez une semaine :" />
-    <ComboBox fx:id="weekComboBox" layoutX="20" layoutY="250" prefWidth="200" />
-    <Button layoutX="20" layoutY="300" onAction="#handleGenerateTimetablePdf" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Générer Emploi du Temps PDF" />
-
-
-    <Button text="Générer Relevé de Notes PDF"
-            onAction="#handleGenerateGradesPdf"
-            layoutX="20" layoutY="350"
-            style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
-
+    <Label layoutX="200" layoutY="330" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Pour générer l'emploi du temps :" />
+    <Label layoutX="200" layoutY="360" style="-fx-font-size: 14px;" text="Sélectionnez une semaine :" />
+    <ComboBox fx:id="weekComboBox" layoutX="200" layoutY="390" prefWidth="200" />
+    <Button layoutX="200" layoutY="430" onAction="#handleGenerateTimetablePdf" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Générer Emploi du Temps PDF" />
 
 </AnchorPane>
