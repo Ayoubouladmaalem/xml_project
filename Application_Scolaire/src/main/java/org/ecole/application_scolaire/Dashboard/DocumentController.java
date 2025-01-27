@@ -1,5 +1,6 @@
 package org.ecole.application_scolaire.Dashboard;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Alert;
@@ -21,53 +22,35 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class DocumentController {
-
-    private static final List<String> ALLOWED_WEEKS = Arrays.asList(
-            "Week of 30/12",
-            "Week of 06/01",
-            "Week of 13/01",
-            "Week of 20/01"
-    );
 
     @FXML
     private ComboBox<String> studentComboBox;
     @FXML
     private ComboBox<String> weekComboBox;
 
-    // Initialisation du contrôleur
+
     public void initialize() {
         loadStudentsFromXml();
         loadWeeksFromXml();
     }
 
-    // Charger les noms des étudiants dans le ComboBox
+    // =================== LOAD STUDENTS =====================
     private void loadStudentsFromXml() {
         try {
-            // Charger le fichier XML
             File xmlFile = new File("src/main/resources/xml/students.xml");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xmlFile);
-
-            // Normaliser le document XML
             document.getDocumentElement().normalize();
 
-            // Récupérer tous les éléments <student>
             NodeList studentNodes = document.getElementsByTagName("student");
-
-            // Parcourir les étudiants
             for (int i = 0; i < studentNodes.getLength(); i++) {
                 Node node = studentNodes.item(i);
-
                 if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
                     Element studentElement = (Element) node;
-
-                    // Vérifier si les balises <nom> et <prenom> existent
                     Node nameNode = studentElement.getElementsByTagName("nom").item(0);
                     Node surnameNode = studentElement.getElementsByTagName("prenom").item(0);
 
@@ -75,50 +58,30 @@ public class DocumentController {
                         String nom = nameNode.getTextContent();
                         String prenom = surnameNode.getTextContent();
                         String fullName = nom + " " + prenom;
-
-                        // Ajouter le nom complet au ComboBox
                         studentComboBox.getItems().add(fullName);
-                    } else {
-                        System.err.println("Balises <nom> ou <prenom> manquantes pour un étudiant.");
                     }
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // Obtenir le chemin du dossier Téléchargements
-    private String getDownloadsFolderPath() {
-        String userHome = System.getProperty("user.home");
-        return userHome + File.separator + "Downloads";
-    }
-
-
-
-
-
     private void loadWeeksFromXml() {
         try {
-            // Load the emploi.xml file
             File xmlFile = new File("src/main/resources/xml/emploi.xml");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xmlFile);
             document.getDocumentElement().normalize();
 
-            // Extract all <week> elements
             NodeList weekNodes = document.getElementsByTagName("week");
-
-            // Iterate through the weeks and add their numbers to the ComboBox
             for (int i = 0; i < weekNodes.getLength(); i++) {
                 Node weekNode = weekNodes.item(i);
                 if (weekNode != null && weekNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element weekElement = (Element) weekNode;
                     String weekNumber = weekElement.getAttribute("number");
                     if (weekNumber != null && !weekNumber.isEmpty()) {
-                        // Add "Week <number>" to the ComboBox
                         weekComboBox.getItems().add("Week " + weekNumber);
                     }
                 }
@@ -127,19 +90,13 @@ public class DocumentController {
             e.printStackTrace();
         }
     }
-    // Helper method to get the week from a date
-    private String getWeekFromDate(String date) {
-        // Simplistic approach: You can refine this based on your actual week logic
-        return "Week of " + date;
+
+    private String getDownloadsFolderPath() {
+        String userHome = System.getProperty("user.home");
+        return userHome + File.separator + "Downloads";
     }
 
-
-
-
-
-
-
-    // Gérer la génération du PDF de la carte étudiant
+    // =================== STUDENT CARD =====================
     @FXML
     private void handleGenerateStudentCardPdf() {
         String selectedStudent = studentComboBox.getValue();
@@ -149,18 +106,13 @@ public class DocumentController {
         }
 
         try {
-            // Diviser le nom complet en nom et prénom
             String[] parts = selectedStudent.split(" ", 2);
             String nom = parts[0];
             String prenom = (parts.length > 1) ? parts[1] : "";
-
-            // Créer un nom de fichier basé sur le nom et prénom
             String outputFileName = nom + "_" + prenom + "_student_card.pdf";
 
-            // Filtrer les données XML pour l'étudiant sélectionné
             String filteredXmlPath = filterStudentXml("src/main/resources/xml/students.xml", selectedStudent);
 
-            // Générer le PDF avec le nom dynamique
             generatePdf(filteredXmlPath, "src/main/resources/xml/student_card.xslt", outputFileName);
 
             showAlert("PDF Carte Étudiant généré avec succès !");
@@ -170,44 +122,32 @@ public class DocumentController {
         }
     }
 
-
-    // Méthode pour filtrer les données XML pour l'étudiant sélectionné
     private String filterStudentXml(String originalXmlPath, String fullName) throws Exception {
-        // Chemin du fichier XML temporaire
         String tempXmlPath = getDownloadsFolderPath() + File.separator + "filtered_student.xml";
 
-        // Charger le fichier XML original
         File xmlFile = new File(originalXmlPath);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(xmlFile);
-
-        // Normaliser le document XML
         document.getDocumentElement().normalize();
 
-        // Créer un nouveau document XML pour l'étudiant filtré
         Document filteredDocument = builder.newDocument();
         Element rootElement = filteredDocument.createElement("students");
         filteredDocument.appendChild(rootElement);
 
-        // Diviser le nom complet en nom et prénom
         String[] parts = fullName.split(" ", 2);
         String selectedNom = parts[0];
         String selectedPrenom = (parts.length > 1) ? parts[1] : "";
 
-        // Trouver l'étudiant correspondant au nom et prénom
         NodeList studentNodes = document.getElementsByTagName("student");
         for (int i = 0; i < studentNodes.getLength(); i++) {
             Node node = studentNodes.item(i);
-
             if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
                 Element studentElement = (Element) node;
-
                 String nom = studentElement.getElementsByTagName("nom").item(0).getTextContent();
                 String prenom = studentElement.getElementsByTagName("prenom").item(0).getTextContent();
 
                 if (selectedNom.equals(nom) && selectedPrenom.equals(prenom)) {
-                    // Importer l'élément étudiant dans le nouveau document
                     Node importedNode = filteredDocument.importNode(studentElement, true);
                     rootElement.appendChild(importedNode);
                     break;
@@ -215,7 +155,6 @@ public class DocumentController {
             }
         }
 
-        // Écrire le nouveau document XML dans un fichier temporaire
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(filteredDocument);
@@ -225,14 +164,7 @@ public class DocumentController {
         return tempXmlPath;
     }
 
-
-
-
-
-
-
-
-
+    // =================== TIMETABLE =====================
     @FXML
     private void handleGenerateTimetablePdf() {
         String selectedWeek = weekComboBox.getValue();
@@ -242,10 +174,7 @@ public class DocumentController {
         }
 
         try {
-            // Filter XML for the selected week
             String filteredXmlPath = filterTimetableXml("src/main/resources/xml/emploi.xml", selectedWeek);
-
-            // Generate PDF for the timetable
             String outputFileName = "Timetable_" + selectedWeek.replaceAll("[^a-zA-Z0-9_]", "_") + ".pdf";
             generatePdf(filteredXmlPath, "src/main/resources/xml/emploi.xslt", outputFileName);
 
@@ -256,33 +185,27 @@ public class DocumentController {
         }
     }
 
-
     private String filterTimetableXml(String originalXmlPath, String selectedWeek) throws Exception {
         String tempXmlPath = getDownloadsFolderPath() + File.separator + "filtered_timetable.xml";
 
-        // Extract the week number from the selectedWeek string (e.g., "Week 1" -> "1")
         String weekNumber = selectedWeek.split(" ")[1];
 
-        // Load the original XML
         File xmlFile = new File(originalXmlPath);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(xmlFile);
         document.getDocumentElement().normalize();
 
-        // Create a new filtered XML document
         Document filteredDocument = builder.newDocument();
         Element rootElement = filteredDocument.createElement("schedule");
         filteredDocument.appendChild(rootElement);
 
-        // Find the matching <week> element
         NodeList weekNodes = document.getElementsByTagName("week");
         for (int i = 0; i < weekNodes.getLength(); i++) {
             Node weekNode = weekNodes.item(i);
             if (weekNode != null && weekNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element weekElement = (Element) weekNode;
                 if (weekElement.getAttribute("number").equals(weekNumber)) {
-                    // Import the matching week into the new document
                     Node importedNode = filteredDocument.importNode(weekElement, true);
                     rootElement.appendChild(importedNode);
                     break;
@@ -290,7 +213,6 @@ public class DocumentController {
             }
         }
 
-        // Write the filtered document to a temporary file
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(filteredDocument);
@@ -300,26 +222,13 @@ public class DocumentController {
         return tempXmlPath;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    // Méthode pour générer le PDF
+    // =================== PDF GENERATION =====================
     private void generatePdf(String xmlPath, String xsltPath, String outputFileName) {
         try {
-            // Obtenir le chemin du dossier Téléchargements
             String downloadsFolder = getDownloadsFolderPath();
             String outputPdfPath = downloadsFolder + File.separator + outputFileName;
 
-            // Transformer XML to XSL-FO
+            // 1) transform XML -> FO
             Source xmlSource = new StreamSource(new File(xmlPath));
             Source xsltSource = new StreamSource(new File(xsltPath));
 
@@ -331,7 +240,7 @@ public class DocumentController {
                 transformer.transform(xmlSource, new StreamResult(foOutputStream));
             }
 
-            // Render XSL-FO to PDF using Apache FOP
+            // 2) transform FO -> PDF
             File pdfFile = new File(outputPdfPath);
             try (OutputStream pdfOutputStream = new FileOutputStream(pdfFile)) {
                 FopFactory fopFactory = FopFactory.newInstance(new File(".").toURI());
@@ -354,12 +263,87 @@ public class DocumentController {
         }
     }
 
-    // Méthode pour afficher des alertes
+    // =================== ALERT UTILITY =====================
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    // =================== ATTESTATION =====================
+    @FXML
+    public void handleGenerateAttestation(ActionEvent actionEvent) {
+        String selectedStudent = studentComboBox.getValue();
+        if (selectedStudent == null) {
+            showAlert("Veuillez sélectionner un étudiant avant de générer l'attestation.");
+            return;
+        }
+
+        try {
+            // 1) Filter the main students.xml to keep ONLY the chosen student
+            String filteredXmlPath = filterStudentXmlForAttestation("src/main/resources/xml/students.xml", selectedStudent);
+
+            // 2) Build a PDF filename. For example, "Attestation_ABBAD_ABDELOUAHED.pdf"
+            String outputFileName = "Attestation_" + selectedStudent.replace(" ", "_") + ".pdf";
+
+            // 3) Use generatePdf(...) with your XSL-FO
+            generatePdf(filteredXmlPath, "src/main/resources/xml/attestation-students-fo.xsl", outputFileName);
+
+            showAlert("Attestation PDF générée avec succès!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Erreur lors de la génération de l'attestation: " + e.getMessage());
+        }
+    }
+
+    private String filterStudentXmlForAttestation(String originalXmlPath, String fullName) throws Exception {
+        // We'll store the filtered file in "filtered_attestation.xml"
+        String tempXmlPath = getDownloadsFolderPath() + File.separator + "filtered_attestation.xml";
+
+        // 1) load the main students.xml
+        File xmlFile = new File(originalXmlPath);
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.parse(xmlFile);
+        document.getDocumentElement().normalize();
+
+        // 2) create a new doc with <students> root
+        Document filteredDoc = builder.newDocument();
+        Element root = filteredDoc.createElement("students");
+        filteredDoc.appendChild(root);
+
+        // split "ABBAD ABDELOUAHED" => [ABBAD, ABDELOUAHED]
+        String[] parts = fullName.split(" ", 2);
+        String selectedNom = parts[0];
+        String selectedPrenom = (parts.length > 1) ? parts[1] : "";
+
+        // 3) find the matching student in original doc
+        NodeList studentList = document.getElementsByTagName("student");
+        for (int i = 0; i < studentList.getLength(); i++) {
+            Node n = studentList.item(i);
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element studentEl = (Element) n;
+                String nomEl = studentEl.getElementsByTagName("nom").item(0).getTextContent();
+                String prenomEl = studentEl.getElementsByTagName("prenom").item(0).getTextContent();
+
+                if (selectedNom.equals(nomEl) && selectedPrenom.equals(prenomEl)) {
+                    // Found the correct <student>, import it
+                    Node imported = filteredDoc.importNode(studentEl, true);
+                    root.appendChild(imported);
+                    break;
+                }
+            }
+        }
+
+        // 4) write out to "filtered_attestation.xml"
+        TransformerFactory tf = TransformerFactory.newInstance();
+        Transformer t = tf.newTransformer();
+        DOMSource source = new DOMSource(filteredDoc);
+        StreamResult result = new StreamResult(new File(tempXmlPath));
+        t.transform(source, result);
+
+        return tempXmlPath;
     }
 }
