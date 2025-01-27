@@ -26,6 +26,7 @@
         <lieu_naissance>HDJEHEB</lieu_naissance>
         <date_naissance>2003-05-21</date_naissance>
     </student>
+
     <student>
         <code_apogee>21010358</code_apogee>
         <CIN>K567452</CIN>
@@ -71,6 +72,8 @@
         <lieu_naissance>OUEZZANE</lieu_naissance>
         <date_naissance>2003-09-25</date_naissance>
     </student>
+
+
     <student>
         <code_apogee>21009157</code_apogee>
         <CIN>KB226846</CIN>
@@ -116,6 +119,9 @@
         <lieu_naissance>MEKNES</lieu_naissance>
         <date_naissance>2000-12-18</date_naissance>
     </student>
+
+
+
     <student>
         <code_apogee>21009110</code_apogee>
         <CIN>LB251435</CIN>
@@ -179,6 +185,10 @@
         <lieu_naissance>FES</lieu_naissance>
         <date_naissance>2003-05-10</date_naissance>
     </student>
+
+
+
+
     <student>
         <code_apogee>21010326</code_apogee>
         <CIN>BJ479281</CIN>

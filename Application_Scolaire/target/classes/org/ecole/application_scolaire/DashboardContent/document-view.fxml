@@ -35,4 +35,10 @@
             layoutX="20" layoutY="300"
             style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
 
+    <Button text="Générer Relevé de Notes PDF"
+            onAction="#handleGenerateGradesPdf"
+            layoutX="20" layoutY="350"
+            style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+
+
 </AnchorPane>

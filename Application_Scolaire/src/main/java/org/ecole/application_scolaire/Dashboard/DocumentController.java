@@ -305,7 +305,105 @@ public class DocumentController {
 
 
 
+    private String filterGradesXml(String gradesXmlPath, String codeApogee) throws Exception {
+        String tempXmlPath = getDownloadsFolderPath() + File.separator + "filtered_grades.xml";
 
+        // Charger le fichier XML des notes
+        File xmlFile = new File(gradesXmlPath);
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.parse(xmlFile);
+
+        // Normaliser le document XML
+        document.getDocumentElement().normalize();
+
+        // Créer un nouveau document XML pour les notes filtrées
+        Document filteredDocument = builder.newDocument();
+        Element rootElement = filteredDocument.createElement("grades");
+        filteredDocument.appendChild(rootElement);
+
+        // Filtrer les notes de l'étudiant correspondant au code_apogee
+        NodeList studentNodes = document.getElementsByTagName("student");
+        for (int i = 0; i < studentNodes.getLength(); i++) {
+            Node node = studentNodes.item(i);
+            if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
+                Element studentElement = (Element) node;
+
+                if (studentElement.getAttribute("code_apogee").equals(codeApogee)) {
+                    Node importedNode = filteredDocument.importNode(studentElement, true);
+                    rootElement.appendChild(importedNode);
+                    break;
+                }
+            }
+        }
+
+        // Écrire le nouveau document XML dans un fichier temporaire
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource source = new DOMSource(filteredDocument);
+        StreamResult result = new StreamResult(new File(tempXmlPath));
+        transformer.transform(source, result);
+
+        return tempXmlPath;
+    }
+
+    @FXML
+    private void handleGenerateGradesPdf() {
+        String selectedStudent = studentComboBox.getValue();
+        if (selectedStudent == null) {
+            showAlert("Veuillez sélectionner un étudiant avant de générer le relevé de notes.");
+            return;
+        }
+
+        try {
+            // Diviser le nom complet en nom et prénom
+            String[] parts = selectedStudent.split(" ", 2);
+            String nom = parts[0];
+            String prenom = (parts.length > 1) ? parts[1] : "";
+
+            // Charger le fichier students.xml pour récupérer le code_apogee
+            File xmlFile = new File("src/main/resources/xml/students.xml");
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(xmlFile);
+            document.getDocumentElement().normalize();
+
+            // Récupérer le code_apogee de l'étudiant sélectionné
+            NodeList studentNodes = document.getElementsByTagName("student");
+            String codeApogee = null;
+            for (int i = 0; i < studentNodes.getLength(); i++) {
+                Node node = studentNodes.item(i);
+                if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element studentElement = (Element) node;
+
+                    String studentNom = studentElement.getElementsByTagName("nom").item(0).getTextContent().trim();
+                    String studentPrenom = studentElement.getElementsByTagName("prenom").item(0).getTextContent().trim();
+
+                    if (nom.equalsIgnoreCase(studentNom) && prenom.equalsIgnoreCase(studentPrenom)) {
+                        codeApogee = studentElement.getElementsByTagName("code_apogee").item(0).getTextContent();
+                        break;
+                    }
+                }
+            }
+
+            if (codeApogee == null) {
+                showAlert("Code Apogée introuvable pour l'étudiant sélectionné.");
+                return;
+            }
+
+            // Filtrer les données des notes pour l'étudiant
+            String filteredGradesPath = filterGradesXml("src/main/resources/xml/grades.xml", codeApogee);
+
+            // Générer le PDF
+            String outputFileName = nom + "_" + prenom + "_grades.pdf";
+            generatePdf(filteredGradesPath, "src/main/resources/xml/grades_report.xslt", outputFileName);
+
+            showAlert("Relevé de notes généré avec succès !");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Erreur lors de la génération du relevé de notes : " + e.getMessage());
+        }
+    }
 
 
 
