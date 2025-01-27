@@ -101,9 +101,9 @@
     <grade submodule="GINF44-S2">11</grade>
     <grade submodule="GINF45-S1">10</grade>
     <grade submodule="GINF45-S2">11</grade>
-    <grade submodule="GINF46-S1">16</grade>
-    <grade submodule="GINF46-S2">14</grade>
-    <grade submodule="GINF46-S3">15</grade>
+    <grade submodule="GINF46-S1">15</grade>
+    <grade submodule="GINF46-S2"/>
+    <grade submodule="GINF46-S3"/>
   </student>
   <student code_apogee="21010358">
     <grade submodule="GINF31-S1">14</grade>
@@ -136,9 +136,9 @@
     <grade submodule="GINF44-S2">19</grade>
     <grade submodule="GINF45-S1">15</grade>
     <grade submodule="GINF45-S2">11</grade>
-    <grade submodule="GINF46-S1">16</grade>
-    <grade submodule="GINF46-S2">14</grade>
-    <grade submodule="GINF46-S3">15</grade>
+    <grade submodule="GINF46-S1">18</grade>
+    <grade submodule="GINF46-S2"/>
+    <grade submodule="GINF46-S3"/>
   </student>
   <student code_apogee="21010266">
     <grade submodule="GINF31-S1">17</grade>
@@ -171,9 +171,9 @@
     <grade submodule="GINF44-S2">17</grade>
     <grade submodule="GINF45-S1">13</grade>
     <grade submodule="GINF45-S2">19</grade>
-    <grade submodule="GINF46-S1">16</grade>
-    <grade submodule="GINF46-S2">14</grade>
-    <grade submodule="GINF46-S3">15</grade>
+    <grade submodule="GINF46-S1">11</grade>
+    <grade submodule="GINF46-S2"/>
+    <grade submodule="GINF46-S3"/>
   </student>
   <student code_apogee="20001758">
     <grade submodule="GINF31-S1">15</grade>
@@ -206,9 +206,9 @@
     <grade submodule="GINF44-S2">20</grade>
     <grade submodule="GINF45-S1">20</grade>
     <grade submodule="GINF45-S2">17</grade>
-    <grade submodule="GINF46-S1">16</grade>
-    <grade submodule="GINF46-S2">14</grade>
-    <grade submodule="GINF46-S3">15</grade>
+    <grade submodule="GINF46-S1">11</grade>
+    <grade submodule="GINF46-S2"/>
+    <grade submodule="GINF46-S3"/>
   </student>
   <student code_apogee="21010287">
     <grade submodule="GINF31-S1">19</grade>
