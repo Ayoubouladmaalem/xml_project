@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.ecole.application_scolaire.Dashboard.ListeTpController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.ecole.application_scolaire.Dashboard.ListeTpController">
 
+   <!-- Button to generate the PDF (via XSL-FO) -->
+   <children>
+      <Button layoutX="98.0" layoutY="119.0" mnemonicParsing="false" onAction="#GenerateTpListe" prefHeight="25.0" prefWidth="127.0" text="GenererTpListe" />
+
+      <!-- Label to show success/error messages -->
+      <Label fx:id="contentText" layoutX="40.0" layoutY="200.0" prefHeight="96.0" prefWidth="520.0" text="Status messages..." />
+   </children>
 </AnchorPane>
