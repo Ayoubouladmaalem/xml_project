@@ -1,64 +1,44 @@
 /* Sidebar Styles */
 .sidebar {
-    -fx-background-color: #1E90FF; /* Sky blue color */
+    -fx-background-color: #1E90FF;
     -fx-padding: 20;
     -fx-pref-width: 200px;
-    -fx-alignment: top_center;  /* Align items to the top */
-}
-
-.sidebar-logo {
-    -fx-padding: 5;
-    -fx-alignment: center;
-    -fx-halign: center;
-    -fx-background-color: transparent;
-}
-
-.sidebar-items {
-    -fx-alignment: center;  /* Center the sidebar items */
-    -fx-spacing: 20;
 }
 
 .sidebar-item {
     -fx-fill: white;
     -fx-font-size: 16px;
-    -fx-cursor: hand;
     -fx-padding: 10;
-    -fx-background-color: transparent;  /* Default background */
-    -fx-text-align: center;
-    -fx-font-family: "Times New Roman", Times, serif;  /* Font family applied here */
-    -fx-border-radius: 5px; /* Rounded corners for a smoother look */
-    -fx-border-color: transparent; /* Remove borders */
-    -fx-border-width: 2px;
+    -fx-font-family: "Times New Roman", serif;
+    -fx-text-alignment: center;
 }
 
-/* Hover effect for the entire item */
-.sidebar-item:hover {
-    -fx-fill: #34495e; /* Change text color */
-    -fx-background-color: white;  /* Change the background to white */
-    -fx-border-color: #34495e;  /* Optional: Add a border to make it stand out */
+/* Welcome Content Styles */
+.welcome-title {
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 36px;
+    -fx-text-fill: #2c3e50; /* Couleur sombre */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.5, 1, 1); /* Ombre portée */
 }
 
-/* Focused item effect */
-.sidebar-item:focused {
-    -fx-background-color: #1abc9c;
-    -fx-fill: #ecf0f1;
+.university-name {
+    -fx-font-family: "Georgia";
+    -fx-font-size: 28px;
+    -fx-text-fill: #34495e;
+    -fx-font-style: italic;
 }
 
-/* Apply font specifically to text content of the sidebar items */
-.sidebar-item > .text {
-    -fx-font-family: "Times New Roman", Times, serif;  /* Ensure the text uses this font */
+.school-name {
+    -fx-font-family: "Verdana";
+    -fx-font-size: 24px;
+    -fx-text-fill: #7f8c8d;
 }
+/*.center-content {*/
+/*    -fx-background-color: #ecf0f1; !* Couleur de fond *!*/
+/*    -fx-padding: 20px;*/
+/*    -fx-border-color: #3498db;*/
+/*    -fx-border-width: 2px;*/
+/*    -fx-border-radius: 10px;*/
+/*    -fx-background-radius: 10px;*/
+/*}*/
 
-.center {
-    -fx-padding: 20;
-    -fx-background-color: #ffffff;
-    -fx-border-color: #bdc3c7;
-    -fx-border-width: 1;
-    -fx-border-radius: 10px;
-}
-
-/* Additional Content Styling */
-.center > .text {
-    -fx-font-size: 18px;
-    -fx-fill: #2c3e50;
-}

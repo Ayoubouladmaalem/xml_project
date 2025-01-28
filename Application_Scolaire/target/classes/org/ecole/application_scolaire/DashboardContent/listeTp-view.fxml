@@ -4,13 +4,20 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.ecole.application_scolaire.Dashboard.ListeTpController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.ecole.application_scolaire.Dashboard.ListeTpController"
+            style="-fx-background-color: #f4f4f9; -fx-padding: 20px; -fx-border-color: #d3d3d3; -fx-border-width: 1px; -fx-border-radius: 10px;">
 
-   <!-- Button to generate the PDF (via XSL-FO) -->
    <children>
-      <Button layoutX="98.0" layoutY="119.0" mnemonicParsing="false" onAction="#GenerateTpListe" prefHeight="25.0" prefWidth="127.0" text="GenererTpListe" />
+      <!-- Label for instruction -->
+      <Label layoutX="20.0" layoutY="100.0" text="Pour générer la liste des TPs :"
+             style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+      <!-- Button to generate the PDF -->
+      <Button layoutX="200.5" layoutY="150" mnemonicParsing="false" onAction="#GenerateTpListe" prefHeight="40.0" prefWidth="150.0" text="Générer TP Liste"
+              style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-border-radius: 5px; -fx-background-radius: 5px;" />
 
       <!-- Label to show success/error messages -->
-      <Label fx:id="contentText" layoutX="40.0" layoutY="200.0" prefHeight="96.0" prefWidth="520.0" text="Status messages..." />
+      <Label fx:id="contentText" layoutX="20.0" layoutY="170.0" prefHeight="96.0" prefWidth="520.0" text="Status messages..."
+             style="-fx-text-fill: #555; -fx-font-size: 14px; -fx-font-style: italic;" />
    </children>
 </AnchorPane>

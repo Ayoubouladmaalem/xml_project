@@ -26,9 +26,9 @@ public class ListeTpController {
     public void GenerateTpListe(ActionEvent actionEvent) {
         try {
             // Update these paths as needed for your environment
-            String xmlFile   = "src/main/resources/xml/students.xml";
-            String xsltFile  = "src/main/resources/xml/students-to-fo.xsl";
-            String outputPdf = "src/main/resources/TPGroups.pdf";
+            String xmlFile = "src/main/resources/xml/students.xml";
+            String xsltFile = "src/main/resources/xml/students-to-fo.xsl";
+            String outputPdf = getDownloadsFolderPath() + File.separator + "TPGroups.pdf";
 
             // 1) Initialize FOP factory
             FopFactory fopFactory = FopFactory.newInstance(new File(".").toURI());
@@ -55,5 +55,13 @@ public class ListeTpController {
             e.printStackTrace();
             contentText.setText("Error Generating PDF: " + e.getMessage());
         }
+    }
+
+    /**
+     * Get the Downloads folder path for the current user.
+     */
+    private String getDownloadsFolderPath() {
+        String userHome = System.getProperty("user.home");
+        return userHome + File.separator + "Downloads";
     }
 }

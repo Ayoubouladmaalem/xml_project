@@ -5,39 +5,58 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.ecole.application_scolaire.Dashboard.AffichageController"
-            prefWidth="900" prefHeight="600">
+            prefWidth="900" prefHeight="600"
+            style="-fx-background-color: #f4f4f9; -fx-padding: 20px;">
 
     <children>
 
+        <!-- Label for "Affichage des modules" -->
+        <Label text="Affichage des modules :"
+               layoutX="30" layoutY="10"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+        <!-- ComboBox for module selection -->
         <ComboBox fx:id="moduleComboBox"
-                  layoutX="30" layoutY="30"
-                  prefWidth="150" />
+                  layoutX="30" layoutY="40"
+                  prefWidth="200"
+                  promptText="Sélectionnez un module"
+                  style="-fx-font-size: 14px; -fx-padding: 5px;"/>
 
+        <!-- "Générer" Button -->
         <Button fx:id="generateButton"
-                layoutX="200" layoutY="30"
+                layoutX="250" layoutY="40"
                 text="Générer"
-                onAction="#handleGenerateButton" />
+                onAction="#handleGenerateButton"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5px 15px; -fx-border-radius: 5px; -fx-background-radius: 5px;"/>
 
+        <!-- "Exporter en HTML" Button -->
         <Button fx:id="exportButton"
-                layoutX="300" layoutY="30"
+                layoutX="360" layoutY="40"
                 text="Exporter en HTML"
-                onAction="#handleExportHtmlButton" />
+                onAction="#handleExportHtmlButton"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5px 15px; -fx-border-radius: 5px; -fx-background-radius: 5px;"/>
 
+        <!-- Status Label -->
         <Label fx:id="statusLabel"
-               layoutX="30" layoutY="80"
-               text="Status label..." />
+               layoutX="30" layoutY="90"
+               text="Status label..."
+               style="-fx-font-size: 14px; -fx-text-fill: #555; -fx-font-style: italic;"/>
 
+        <!-- TableView for displaying results -->
         <TableView fx:id="resultTableView"
-                   layoutX="30" layoutY="120"
-                   prefWidth="820" prefHeight="400">
+                   layoutX="30" layoutY="130"
+                   prefWidth="820" prefHeight="400"
+                   style="-fx-background-color: white; -fx-border-color: #d3d3d3; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-background-radius: 5px;">
             <columns>
                 <TableColumn fx:id="codeApogeeColumn"
                              text="Numéro"
-                             prefWidth="120"/>
+                             prefWidth="120"
+                             style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
                 <TableColumn fx:id="studentNameColumn"
                              text="Nom Complet"
-                             prefWidth="150"/>
-                <!-- dynamic submodule columns are added in the controller -->
+                             prefWidth="150"
+                             style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+                <!-- Dynamic submodule columns are added in the controller -->
             </columns>
         </TableView>
 

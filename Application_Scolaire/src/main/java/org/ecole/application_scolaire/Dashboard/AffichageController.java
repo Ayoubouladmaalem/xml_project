@@ -12,7 +12,6 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -20,6 +19,8 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.*;
+
+import static org.apache.xmlbeans.impl.common.DocumentHelper.createDocument;
 
 public class AffichageController {
 
@@ -35,29 +36,14 @@ public class AffichageController {
     private TableColumn<StudentRow, String> studentNameColumn;
 
     @FXML
-    private Button generateButton;  // from FXML
-    @FXML
-    private Button exportButton;    // from FXML
-
-    @FXML
     private Label statusLabel;
 
-    // Data structures:
-    //  - (codeApogee -> "Nom Prenom")
     private final Map<String, String> studentsMap = new HashMap<>();
-    //  - (moduleCode -> list of submodules)
     private final Map<String, List<SubmoduleDefinition>> modulesMap = new HashMap<>();
-    //  - (codeApogee -> (submoduleCode -> grade))
     private final Map<String, Map<String, String>> gradesMap = new HashMap<>();
-
-    // We'll store the last chosen module and its subDefs for use in exporting
     private String lastSelectedModule = null;
     private List<SubmoduleDefinition> lastSelectedSubDefs = null;
 
-    /**
-     * SubmoduleDefinition holds code + intitule
-     *  e.g. code="IIAP4214", intitule="Probabilités"
-     */
     static class SubmoduleDefinition {
         private final String code;
         private final String intitule;
@@ -66,15 +52,16 @@ public class AffichageController {
             this.code = code;
             this.intitule = intitule;
         }
-        public String getCode()     { return code; }
-        public String getIntitule() { return intitule; }
+
+        public String getCode() {
+            return code;
+        }
+
+        public String getIntitule() {
+            return intitule;
+        }
     }
 
-    /**
-     * StudentRow is one row in the TableView
-     *  - codeApogee, studentName
-     *  - submoduleGrades = map from submoduleCode -> grade string
-     */
     public static class StudentRow {
         private final String codeApogee;
         private final String studentName;
@@ -84,8 +71,14 @@ public class AffichageController {
             this.codeApogee = codeApogee;
             this.studentName = studentName;
         }
-        public String getCodeApogee()  { return codeApogee; }
-        public String getStudentName() { return studentName; }
+
+        public String getCodeApogee() {
+            return codeApogee;
+        }
+
+        public String getStudentName() {
+            return studentName;
+        }
 
         public Map<String, String> getSubmoduleGrades() {
             return submoduleGrades;
@@ -101,24 +94,48 @@ public class AffichageController {
                     double g = Double.parseDouble(gradeStr);
                     sum += g;
                     count++;
-                } catch (NumberFormatException e) {
-                    // skip invalid
+                } catch (NumberFormatException ignored) {
                 }
             }
-            if (count == 0) return 0.0;
-            return sum / count;
+            return (count > 0) ? sum / count : 0.0;
         }
     }
 
     @FXML
     public void initialize() {
-        // Populate ComboBox with known modules:
-        moduleComboBox.setItems(FXCollections.observableArrayList(
-                "GINF31", "GINF32", "GINF33", "GINF34", "GINF35", "GINF36",
-                "GINF41", "GINF42", "GINF43", "GINF44", "GINF45", "GINF46"
-        ));
+        ObservableList<String> moduleTitles = FXCollections.observableArrayList();
+        try {
+            File modulesFile = new File("src/main/resources/xml/module.xml");
+            if (!modulesFile.exists()) {
+                statusLabel.setText("module.xml introuvable");
+                return;
+            }
 
-        // link table columns
+            Document doc = parseXml(modulesFile);
+            NodeList mList = doc.getElementsByTagName("module");
+            for (int i = 0; i < mList.getLength(); i++) {
+                Element moduleElement = (Element) mList.item(i);
+                String moduleTitle = moduleElement.getAttribute("intitule");
+                NodeList subList = moduleElement.getElementsByTagName("submodule");
+
+                List<SubmoduleDefinition> subDefs = new ArrayList<>();
+                for (int j = 0; j < subList.getLength(); j++) {
+                    Element sEl = (Element) subList.item(j);
+                    String subCode = sEl.getAttribute("code");
+                    String subIntitule = sEl.getAttribute("intitule");
+                    subDefs.add(new SubmoduleDefinition(subCode, subIntitule));
+                }
+                modulesMap.put(moduleTitle, subDefs);
+                moduleTitles.add(moduleTitle);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            statusLabel.setText("Erreur lors du chargement des modules : " + e.getMessage());
+            return;
+        }
+
+        moduleComboBox.setItems(moduleTitles);
+
         codeApogeeColumn.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().getCodeApogee())
         );
@@ -126,35 +143,78 @@ public class AffichageController {
                 new ReadOnlyStringWrapper(data.getValue().getStudentName())
         );
 
-        // load initial XML data
-        loadDataFromXml();
+        loadStudents();
+        loadGrades();
+
+        statusLabel.setText("Données chargées avec succès.");
     }
 
-    /**
-     * "Générer" button action:
-     *  1) read the selected module
-     *  2) dynamically create columns for submodules
-     *  3) fill the table
-     */
+    private void loadStudents() {
+        try {
+            File studentsFile = new File("src/main/resources/xml/students.xml");
+            if (!studentsFile.exists()) {
+                statusLabel.setText("students.xml introuvable");
+                return;
+            }
+            Document doc = parseXml(studentsFile);
+            NodeList sList = doc.getElementsByTagName("student");
+            for (int i = 0; i < sList.getLength(); i++) {
+                Element e = (Element) sList.item(i);
+                String apogee = e.getElementsByTagName("code_apogee").item(0).getTextContent();
+                String nom = e.getElementsByTagName("nom").item(0).getTextContent();
+                String prenom = e.getElementsByTagName("prenom").item(0).getTextContent();
+                studentsMap.put(apogee, nom + " " + prenom);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            statusLabel.setText("Erreur lors du chargement des étudiants : " + e.getMessage());
+        }
+    }
+
+    private void loadGrades() {
+        try {
+            File gradesFile = new File("src/main/resources/xml/grades.xml");
+            if (!gradesFile.exists()) {
+                statusLabel.setText("grades.xml introuvable");
+                return;
+            }
+            Document doc = parseXml(gradesFile);
+            NodeList gradeStudList = doc.getElementsByTagName("student");
+            for (int i = 0; i < gradeStudList.getLength(); i++) {
+                Element stEl = (Element) gradeStudList.item(i);
+                String apog = stEl.getAttribute("code_apogee");
+                Map<String, String> subGrMap = new HashMap<>();
+                NodeList gList = stEl.getElementsByTagName("grade");
+                for (int g = 0; g < gList.getLength(); g++) {
+                    Element ge = (Element) gList.item(g);
+                    String subcode = ge.getAttribute("submodule");
+                    String gradeVal = ge.getTextContent();
+                    subGrMap.put(subcode, gradeVal);
+                }
+                gradesMap.put(apog, subGrMap);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            statusLabel.setText("Erreur lors du chargement des notes : " + e.getMessage());
+        }
+    }
+
     @FXML
     public void handleGenerateButton() {
-        String selModule = moduleComboBox.getValue();
-        if (selModule == null) {
+        String selModuleTitle = moduleComboBox.getValue();
+        if (selModuleTitle == null) {
             statusLabel.setText("Veuillez sélectionner un module.");
             return;
         }
 
-        // Clear existing dynamic columns
-        clearDynamicColumns();
-
-        // get subDefs
-        List<SubmoduleDefinition> subDefs = modulesMap.get(selModule);
+        List<SubmoduleDefinition> subDefs = modulesMap.get(selModuleTitle);
         if (subDefs == null || subDefs.isEmpty()) {
-            statusLabel.setText("Aucune donnée pour le module: " + selModule);
+            statusLabel.setText("Aucune donnée pour le module : " + selModuleTitle);
             return;
         }
 
-        // create a column for each submodule
+        clearDynamicColumns();
+
         for (SubmoduleDefinition sd : subDefs) {
             TableColumn<StudentRow, String> col = new TableColumn<>(sd.getIntitule());
             col.setPrefWidth(150);
@@ -166,8 +226,7 @@ public class AffichageController {
             resultTableView.getColumns().add(col);
         }
 
-        // create a "Result" column
-        TableColumn<StudentRow, String> resultCol = new TableColumn<>("Result");
+        TableColumn<StudentRow, String> resultCol = new TableColumn<>("Résultat");
         resultCol.setPrefWidth(80);
         resultCol.setCellValueFactory(data -> {
             StudentRow row = data.getValue();
@@ -176,32 +235,27 @@ public class AffichageController {
         });
         resultTableView.getColumns().add(resultCol);
 
-        // fill the table
         ObservableList<StudentRow> rows = buildStudentRows(subDefs);
         resultTableView.setItems(rows);
 
-        // remember the last selected module for exporting
-        lastSelectedModule = selModule;
+        lastSelectedModule = selModuleTitle;
         lastSelectedSubDefs = subDefs;
 
-        statusLabel.setText("Affichage généré pour " + selModule);
+        statusLabel.setText("Affichage généré pour : " + selModuleTitle);
     }
 
-    /** remove columns after the first 2 fixed columns */
     private void clearDynamicColumns() {
         while (resultTableView.getColumns().size() > 2) {
             resultTableView.getColumns().remove(2);
         }
     }
 
-    /** build student rows for the selected subdefs */
     private ObservableList<StudentRow> buildStudentRows(List<SubmoduleDefinition> subDefs) {
         ObservableList<StudentRow> list = FXCollections.observableArrayList();
 
         for (String codeApogee : gradesMap.keySet()) {
             Map<String, String> studGrades = gradesMap.get(codeApogee);
 
-            // check if the student has any submodule code from subDefs
             boolean hasSomething = false;
             for (SubmoduleDefinition sd : subDefs) {
                 if (studGrades.containsKey(sd.getCode())) {
@@ -224,11 +278,12 @@ public class AffichageController {
         return list;
     }
 
-    /**
-     * "Exporter en HTML" button:
-     *  1) create module.xml
-     *  2) transform with moduleResult.xslt => moduleResult.html
-     */
+    private Document parseXml(File f) throws Exception {
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        return db.parse(f);
+    }
+
     @FXML
     public void handleExportHtmlButton() {
         // must have a selected module
@@ -318,15 +373,6 @@ public class AffichageController {
         }
     }
 
-
-    /* =========== Utility =============== */
-
-    private Document createDocument() throws ParserConfigurationException {
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        return db.newDocument();
-    }
-
     private void writeXml(Document doc, File f) throws Exception {
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer t = tf.newTransformer();
@@ -341,88 +387,5 @@ public class AffichageController {
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer transformer = tf.newTransformer(new StreamSource(xslFile));
         transformer.transform(new StreamSource(xmlFile), new StreamResult(htmlFile));
-    }
-
-    /**
-     * loadDataFromXml: read students.xml, module.xml, grades.xml
-     */
-    private void loadDataFromXml() {
-        try {
-            // 1) students.xml
-            File studentsFile = new File("src/main/resources/xml/students.xml");
-            if (!studentsFile.exists()) {
-                statusLabel.setText("students.xml introuvable");
-                return;
-            }
-            Document doc = parseXml(studentsFile);
-            NodeList sList = doc.getElementsByTagName("student");
-            for (int i=0; i < sList.getLength(); i++) {
-                Node n = sList.item(i);
-                if (n.getNodeType() == Node.ELEMENT_NODE) {
-                    Element e = (Element) n;
-                    String apogee = e.getElementsByTagName("code_apogee").item(0).getTextContent();
-                    String nom = e.getElementsByTagName("nom").item(0).getTextContent();
-                    String prenom = e.getElementsByTagName("prenom").item(0).getTextContent();
-                    String fullName = nom + " " + prenom;
-                    studentsMap.put(apogee, fullName);
-                }
-            }
-
-            // 2) module.xml
-            File modulesFile = new File("src/main/resources/xml/module.xml");
-            if (!modulesFile.exists()) {
-                statusLabel.setText("module.xml introuvable");
-                return;
-            }
-            doc = parseXml(modulesFile);
-            NodeList mList = doc.getElementsByTagName("module");
-            for (int i=0; i < mList.getLength(); i++) {
-                Element mEl = (Element) mList.item(i);
-                String moduleCode = mEl.getAttribute("code");
-                NodeList subList = mEl.getElementsByTagName("submodule");
-
-                List<SubmoduleDefinition> subDefs = new ArrayList<>();
-                for (int j=0; j < subList.getLength(); j++) {
-                    Element sEl = (Element) subList.item(j);
-                    String scode = sEl.getAttribute("code");
-                    String sint  = sEl.getAttribute("intitule");
-                    subDefs.add(new SubmoduleDefinition(scode, sint));
-                }
-                modulesMap.put(moduleCode, subDefs);
-            }
-
-            // 3) grades.xml
-            File gradesFile = new File("src/main/resources/xml/grades.xml");
-            if (!gradesFile.exists()) {
-                statusLabel.setText("grades.xml introuvable");
-                return;
-            }
-            doc = parseXml(gradesFile);
-            NodeList gradeStudList = doc.getElementsByTagName("student");
-            for (int i=0; i < gradeStudList.getLength(); i++) {
-                Element stEl = (Element) gradeStudList.item(i);
-                String apog = stEl.getAttribute("code_apogee");
-                Map<String, String> subGrMap = new HashMap<>();
-                NodeList gList = stEl.getElementsByTagName("grade");
-                for (int g=0; g < gList.getLength(); g++) {
-                    Element ge = (Element) gList.item(g);
-                    String subcode = ge.getAttribute("submodule");
-                    String gradeVal = ge.getTextContent();
-                    subGrMap.put(subcode, gradeVal);
-                }
-                gradesMap.put(apog, subGrMap);
-            }
-
-            statusLabel.setText("XML chargé avec succès");
-        } catch (Exception e) {
-            e.printStackTrace();
-            statusLabel.setText("Erreur chargement : " + e.getMessage());
-        }
-    }
-
-    private Document parseXml(File f) throws Exception {
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        return db.parse(f);
     }
 }

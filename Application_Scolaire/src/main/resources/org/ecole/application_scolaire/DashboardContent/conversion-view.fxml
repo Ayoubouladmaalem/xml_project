@@ -17,41 +17,38 @@
         <URL value="@../css/conversion.css"/>
     </stylesheets>
 
+    <Label layoutX="50" layoutY="100"
+           text="Entrer le fichier Excel à convertir:"
+           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333;" />
     <children>
-        <!-- "Upload" button -->
-        <Button fx:id="uploadButton"
-                layoutX="50" layoutY="50"
-                text="Upload Excel"
-                onAction="#handleUploadButton"
-                styleClass="action-button"/>
 
-        <!-- "Convert & View" button -->
-        <Button fx:id="convertAndViewButton"
-                layoutX="50" layoutY="100"
-                text="Convert  View"
-                onAction="#handleConvertAndViewButton"
-                styleClass="action-button"/>
+        <HBox layoutX="50" layoutY="130" spacing="10">
+            <!-- "Upload" button -->
+            <Button fx:id="uploadButton"
+                    text="Upload Excel"
+                    onAction="#handleUploadButton"
+                    styleClass="action-button"/>
+
+            <!-- "Convert & View" button -->
+            <Button fx:id="convertAndViewButton"
+                    text="Convert &amp; View"
+                    onAction="#handleConvertAndViewButton"
+                    styleClass="action-button"/>
+        </HBox>
+
 
         <!-- "View XML" button -->
         <Button fx:id="viewXmlButton"
-                layoutX="50" layoutY="150"
+                layoutX="50" layoutY="180"
                 text="View XML"
-                onAction="#handleViewXmlButton"/>
+                onAction="#handleViewXmlButton"
+                styleClass="action-button-disabled"/>
 
         <!-- A label to show status messages -->
         <Label fx:id="statusLabel"
-               layoutX="50" layoutY="200"
+               layoutX="50" layoutY="250"
                text="Status: ..."
                styleClass="status-label"/>
 
-        <!-- Some Text placeholders -->
-        <Text fx:id="textBeforeUpload"
-              layoutX="50" layoutY="270"
-              text="Text before upload..."
-              styleClass="info-text"/>
-
-        <Text fx:id="contentText"
-              layoutX="50" layoutY="300"
-              text="Content text here..."/>
     </children>
 </AnchorPane>

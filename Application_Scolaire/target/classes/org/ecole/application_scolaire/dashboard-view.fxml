@@ -31,6 +31,13 @@
 
     <!-- Content Area (Main Dashboard) -->
     <center>
-        <!-- Content will be dynamically added here -->
+        <VBox fx:id="centerContent" styleClass="center-content" alignment="CENTER" spacing="20">
+            <ImageView fitWidth="150" fitHeight="150" preserveRatio="true">
+                <Image url="@images/Ensa.png"/>
+            </ImageView>
+            <Text text="Bienvenue à notre application" styleClass="welcome-title"/>
+            <Text text="Université Abdelmalek Essaâdi" styleClass="university-name"/>
+            <Text text="École Nationale des Sciences Appliquées Tanger" styleClass="school-name"/>
+        </VBox>
     </center>
 </BorderPane>
