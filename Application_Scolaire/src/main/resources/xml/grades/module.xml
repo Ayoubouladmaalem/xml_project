@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modules>
+    <module code="GINF31" intitule="Programation Orientée Objet et XML">
+        <submodule code="GINF31-S1" coefficient="1" intitule="Programation Orientée Objet : Java"/>
+        <submodule code="GINF31-S2" coefficient="1" intitule="XML"/>
+    </module>
+    <module code="GINF32" intitule="Qualité et approche processus">
+        <submodule code="GINF32-S1" coefficient="1" intitule="Assurance contrôle qualité (ISO 9001)"/>
+        <submodule code="GINF32-S2" coefficient="1" intitule="Cycle de Vie Logiciel et Méthodes agiles"/>
+        <submodule code="GINF32-S3" coefficient="1" intitule="Maitrise et optimisation des processus"/>
+    </module>
+    <module code="GINF33" intitule="Modelisation orientée objet et IHM">
+        <submodule code="GINF33-S1" coefficient="1" intitule="Modelisation orientée objet UML"/>
+        <submodule code="GINF33-S2" coefficient="1" intitule="IHM"/>
+        <submodule code="GINF33-S3" coefficient="1" intitule="Cycle de Vie logiciel"/>
+    </module>
+    <module code="GINF34" intitule="Bases de données avancées 1">
+        <submodule code="GINF34-S1" coefficient="1" intitule="Optimisation et Qualité de Base de données"/>
+        <submodule code="GINF34-S2" coefficient="1" intitule="Administration et Sécurité des Bases de données"/>
+        <submodule code="GINF34-S3" coefficient="1" intitule="Base de données NoSQL"/>
+    </module>
+    <module code="GINF35" intitule="Administration et programmation système">
+        <submodule code="GINF35-S1" coefficient="1" intitule="Administration systèmes"/>
+        <submodule code="GINF35-S2" coefficient="1" intitule="Programmation systèmes"/>
+    </module>
+    <module code="GINF36" intitule="Langue et communication">
+        <submodule code="GINF36-S1" coefficient="1" intitule="Espagnol 2 et Allemand"/>
+        <submodule code="GINF36-S2" coefficient="1" intitule="Anglais professionnel"/>
+        <submodule code="GINF36-S3" coefficient="1" intitule="Technique de communication"/>
+    </module>
+    <module code="GINF41" intitule="Technologies distribuées">
+        <submodule code="GINF41-S1" coefficient="1" intitule="Introduction à J2EE"/>
+        <submodule code="GINF41-S2" coefficient="1" intitule="Programmation en C#"/>
+        <submodule code="GINF41-S3" coefficient="1" intitule="Gestion des données complexes"/>
+        <submodule code="GINF41-S4" coefficient="1" intitule="Gestion des données distribuées"/>
+    </module>
+    <module code="GINF42" intitule="Bases de données avancées 2 et Cloud">
+        <submodule code="GINF42-S1" coefficient="1" intitule="Gestion des données complexes"/>
+        <submodule code="GINF42-S2" coefficient="1" intitule="Gestion des données distribuées"/>
+        <submodule code="GINF42-S3" coefficient="1" intitule="Cloud Computing et Infogérance"/>
+    </module>
+    <module code="GINF43" intitule="Traitement de l'image">
+        <submodule code="GINF43-S1" coefficient="1" intitule="Traitement de l'image"/>
+        <submodule code="GINF43-S2" coefficient="1" intitule="Vision numérique"/>
+        <submodule code="GINF43-S3" coefficient="1" intitule="Processus stochastique"/>
+    </module>
+    <module code="GINF44" intitule="Programmat° déclarative &amp; Techniques algo avancées">
+        <submodule code="GINF44-S1" coefficient="1" intitule="Programmation déclarative"/>
+        <submodule code="GINF44-S2" coefficient="1" intitule="Technique algorithmique avancée"/>
+    </module>
+    <module code="GINF45" intitule="Sécurité et cryptographie">
+        <submodule code="GINF45-S1" coefficient="1" intitule="Sécurité des systèmes"/>
+        <submodule code="GINF45-S2" coefficient="1" intitule="Cryptographie"/>
+    </module>
+    <module code="GINF46" intitule="Management de l'entreprise 2">
+        <submodule code="GINF46-S1" coefficient="1" intitule="Economie 2 et comptabilité 2"/>
+        <submodule code="GINF46-S2" coefficient="1" intitule="Projet collectif et stage"/>
+        <submodule code="GINF46-S3" coefficient="1" intitule="Management de Projet"/>
+    </module>
+</modules>

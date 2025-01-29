@@ -105,7 +105,7 @@ public class AffichageController {
     public void initialize() {
         ObservableList<String> moduleTitles = FXCollections.observableArrayList();
         try {
-            File modulesFile = new File("src/main/resources/xml/module.xml");
+            File modulesFile = new File("src/main/resources/xml/module/module.xml");
             if (!modulesFile.exists()) {
                 statusLabel.setText("module.xml introuvable");
                 return;
@@ -173,7 +173,7 @@ public class AffichageController {
 
     private void loadGrades() {
         try {
-            File gradesFile = new File("src/main/resources/xml/grades.xml");
+            File gradesFile = new File("src/main/resources/xml/grades/grades.xml");
             if (!gradesFile.exists()) {
                 statusLabel.setText("grades.xml introuvable");
                 return;
@@ -342,11 +342,11 @@ public class AffichageController {
             }
 
             // Write the doc to "module.xml"
-            File xmlOut = new File("module.xml");
+            File xmlOut = new File("src/main/resources/xml/module/module.xml");
             writeXml(doc, xmlOut);
 
             // Step 2) transform with moduleResult.xslt => moduleResult.html
-            File xsltFile = new File("src/main/resources/xml/moduleResult.xslt");
+            File xsltFile = new File("src/main/resources/xml/module/moduleResult.xslt");
             if (!xsltFile.exists()) {
                 statusLabel.setText("XSLT introuvable: " + xsltFile.getAbsolutePath());
                 return;

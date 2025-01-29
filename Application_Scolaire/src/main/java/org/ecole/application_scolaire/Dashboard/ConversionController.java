@@ -246,8 +246,8 @@ public class ConversionController {
     public void handleViewXmlButton() {
         // Check if the XML files exist in the resources/xml folder
         File studentsXml = new File("src/main/resources/xml/students.xml");
-        File modulesXml = new File("src/main/resources/xml/module.xml");
-        File gradesXml = new File("src/main/resources/xml/grades.xml");
+        File modulesXml = new File("src/main/resources/xml/module/module.xml");
+        File gradesXml = new File("src/main/resources/xml/grades/grades.xml");
 
         if (!studentsXml.exists() || !modulesXml.exists() || !gradesXml.exists()) {
             statusLabel.setText("Status: Les fichiers XML n'existent pas. Veuillez d'abord convertir un fichier Excel.");
@@ -368,7 +368,7 @@ public class ConversionController {
             }
         }
 
-        writeXmlToFile(doc, "src/main/resources/xml/module.xml");
+        writeXmlToFile(doc, "src/main/resources/xml/module/module.xml");
     }
 
     // ----------------------------------------------------------------------
@@ -407,7 +407,9 @@ public class ConversionController {
                     String subCode = sub[0];
                     Cell gradeCell = row.getCell(colIndex);
                     String gradeValue = getCellValueAsString(gradeCell);
-
+                    if (gradeValue.isEmpty()) {
+                        gradeValue = "10"; // ou toute autre valeur par défaut
+                    }
                     // <grade submodule="XXX">gradeValue</grade>
                     Element gradeElt = doc.createElement("grade");
                     gradeElt.setAttribute("submodule", subCode);
@@ -419,7 +421,7 @@ public class ConversionController {
             }
         }
 
-        writeXmlToFile(doc, "src/main/resources/xml/grades.xml");
+        writeXmlToFile(doc, "src/main/resources/xml/grades/grades.xml");
     }
 
     // ----------------------------------------------------------------------
@@ -462,8 +464,9 @@ public class ConversionController {
      * Safely get the cell's value as a String, evaluating formulas.
      */
     private String getCellValueAsString(Cell cell) {
-        if (cell == null) return "";
-        // Use DataFormatter + the workbook's formulaEvaluator
+        if (cell == null) {
+            return "12"; // Indiquer une valeur par défaut pour repérer les erreurs
+        }
         return dataFormatter.formatCellValue(cell, formulaEvaluator).trim();
     }
 }

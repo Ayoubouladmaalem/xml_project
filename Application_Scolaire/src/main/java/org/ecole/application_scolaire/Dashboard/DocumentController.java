@@ -69,7 +69,7 @@ public class DocumentController {
 
     private void loadWeeksFromXml() {
         try {
-            File xmlFile = new File("src/main/resources/xml/emploi.xml");
+            File xmlFile = new File("src/main/resources/xml/emploi/emploi.xml");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xmlFile);
@@ -97,6 +97,7 @@ public class DocumentController {
     }
 
     // =================== STUDENT CARD =====================
+
     @FXML
     private void handleGenerateStudentCardPdf() {
         String selectedStudent = studentComboBox.getValue();
@@ -106,14 +107,15 @@ public class DocumentController {
         }
 
         try {
-            String[] parts = selectedStudent.split(" ", 2);
-            String nom = parts[0];
-            String prenom = (parts.length > 1) ? parts[1] : "";
-            String outputFileName = nom + "_" + prenom + "_student_card.pdf";
+            // Normaliser le nom pour éviter les erreurs de comparaison
+            String fullName = selectedStudent.replaceAll("\\s+", " ").trim();
+            String outputFileName = fullName.replaceAll("\\s+", "_") + "_student_card.pdf";
 
-            String filteredXmlPath = filterStudentXml("src/main/resources/xml/students.xml", selectedStudent);
+            // 1) Filtrer le XML pour ne garder que l'étudiant sélectionné
+            String filteredXmlPath = filterStudentXml("src/main/resources/xml/students.xml", fullName);
 
-            generatePdf(filteredXmlPath, "src/main/resources/xml/student_card.xslt", outputFileName);
+            // 2) Générer le PDF avec XSLT-FO
+            generatePdf(filteredXmlPath, "src/main/resources/xml/student_card/student_card.xslt", outputFileName);
 
             showAlert("PDF Carte Étudiant généré avec succès !");
         } catch (Exception e) {
@@ -136,6 +138,8 @@ public class DocumentController {
         filteredDocument.appendChild(rootElement);
 
         NodeList studentNodes = document.getElementsByTagName("student");
+        fullName = fullName.replaceAll("\\s+", " ").trim(); // Normaliser les espaces
+
         for (int i = 0; i < studentNodes.getLength(); i++) {
             Node node = studentNodes.item(i);
             if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
@@ -143,8 +147,8 @@ public class DocumentController {
                 String nom = studentElement.getElementsByTagName("nom").item(0).getTextContent().trim();
                 String prenom = studentElement.getElementsByTagName("prenom").item(0).getTextContent().trim();
 
-                String xmlFullName = nom + " " + prenom; // Reconstruisez le nom complet
-                if (fullName.trim().equalsIgnoreCase(xmlFullName)) { // Comparez les noms complets
+                String xmlFullName = (nom + " " + prenom).replaceAll("\\s+", " ").trim(); // Normaliser les espaces
+                if (fullName.equalsIgnoreCase(xmlFullName)) {
                     Node importedNode = filteredDocument.importNode(studentElement, true);
                     rootElement.appendChild(importedNode);
                     break;
@@ -171,9 +175,9 @@ public class DocumentController {
         }
 
         try {
-            String filteredXmlPath = filterTimetableXml("src/main/resources/xml/emploi.xml", selectedWeek);
+            String filteredXmlPath = filterTimetableXml("src/main/resources/xml/emploi/emploi.xml", selectedWeek);
             String outputFileName = "Timetable_" + selectedWeek.replaceAll("[^a-zA-Z0-9_]", "_") + ".pdf";
-            generatePdf(filteredXmlPath, "src/main/resources/xml/emploi.xslt", outputFileName);
+            generatePdf(filteredXmlPath, "src/main/resources/xml/emploi/emploi.xslt", outputFileName);
 
             showAlert("PDF Emploi du Temps généré avec succès !");
         } catch (Exception e) {
@@ -270,6 +274,7 @@ public class DocumentController {
     }
 
     // =================== ATTESTATION =====================
+
     @FXML
     public void handleGenerateAttestation(ActionEvent actionEvent) {
         String selectedStudent = studentComboBox.getValue();
@@ -279,55 +284,49 @@ public class DocumentController {
         }
 
         try {
-            // 1) Filter the main students.xml to keep ONLY the chosen student
-            String filteredXmlPath = filterStudentXmlForAttestation("src/main/resources/xml/students.xml", selectedStudent);
+            // Normaliser les espaces dans le nom complet
+            String fullName = selectedStudent.replaceAll("\\s+", " ").trim();
+            String outputFileName = "Attestation_" + fullName.replaceAll("\\s+", "_") + ".pdf";
 
-            // 2) Build a PDF filename. For example, "Attestation_ABBAD_ABDELOUAHED.pdf"
-            String outputFileName = "Attestation_" + selectedStudent.replace(" ", "_") + ".pdf";
+            // 1) Filtrer le XML pour ne garder que l'étudiant sélectionné
+            String filteredXmlPath = filterStudentXmlForAttestation("src/main/resources/xml/students.xml", fullName);
 
-            // 3) Use generatePdf(...) with your XSL-FO
-            generatePdf(filteredXmlPath, "src/main/resources/xml/attestation-students-fo.xsl", outputFileName);
+            // 2) Générer l'attestation en PDF
+            generatePdf(filteredXmlPath, "src/main/resources/xml/attestation/attestation-students-fo.xsl", outputFileName);
 
-            showAlert("Attestation PDF générée avec succès!");
+            showAlert("Attestation PDF générée avec succès !");
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Erreur lors de la génération de l'attestation: " + e.getMessage());
+            showAlert("Erreur lors de la génération de l'attestation : " + e.getMessage());
         }
     }
 
 
     private String filterStudentXmlForAttestation(String originalXmlPath, String fullName) throws Exception {
-        // We'll store the filtered file in "filtered_attestation.xml"
         String tempXmlPath = getDownloadsFolderPath() + File.separator + "filtered_attestation.xml";
 
-        // 1) load the main students.xml
         File xmlFile = new File(originalXmlPath);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(xmlFile);
         document.getDocumentElement().normalize();
 
-        // 2) create a new doc with <students> root
         Document filteredDoc = builder.newDocument();
         Element root = filteredDoc.createElement("students");
         filteredDoc.appendChild(root);
 
-        // split "ABBAD ABDELOUAHED" => [ABBAD, ABDELOUAHED]
-        String[] parts = fullName.split(" ", 2);
-        String selectedNom = parts[0];
-        String selectedPrenom = (parts.length > 1) ? parts[1] : "";
+        fullName = fullName.replaceAll("\\s+", " ").trim(); // Normaliser les espaces
 
-        // 3) find the matching student in original doc
         NodeList studentList = document.getElementsByTagName("student");
         for (int i = 0; i < studentList.getLength(); i++) {
             Node n = studentList.item(i);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element studentEl = (Element) n;
-                String nomEl = studentEl.getElementsByTagName("nom").item(0).getTextContent();
-                String prenomEl = studentEl.getElementsByTagName("prenom").item(0).getTextContent();
+                String nomEl = studentEl.getElementsByTagName("nom").item(0).getTextContent().trim();
+                String prenomEl = studentEl.getElementsByTagName("prenom").item(0).getTextContent().trim();
 
-                if (selectedNom.equals(nomEl) && selectedPrenom.equals(prenomEl)) {
-                    // Found the correct <student>, import it
+                String xmlFullName = (nomEl + " " + prenomEl).replaceAll("\\s+", " ").trim();
+                if (fullName.equalsIgnoreCase(xmlFullName)) {
                     Node imported = filteredDoc.importNode(studentEl, true);
                     root.appendChild(imported);
                     break;
@@ -335,7 +334,6 @@ public class DocumentController {
             }
         }
 
-        // 4) write out to "filtered_attestation.xml"
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer t = tf.newTransformer();
         DOMSource source = new DOMSource(filteredDoc);
@@ -352,28 +350,31 @@ public class DocumentController {
     private String filterGradesXml(String gradesXmlPath, String codeApogee) throws Exception {
         String tempXmlPath = getDownloadsFolderPath() + File.separator + "filtered_grades.xml";
 
-        // Charger le fichier XML des notes
-        File xmlFile = new File(gradesXmlPath);
+        File xmlFile = new File("src/main/resources/" + gradesXmlPath);
+        if (!xmlFile.exists()) {
+            showAlert("Erreur : Le fichier grades.xml est introuvable !");
+            return null;
+        }
+
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(xmlFile);
-
-        // Normaliser le document XML
         document.getDocumentElement().normalize();
 
-        // Créer un nouveau document XML pour les notes filtrées
         Document filteredDocument = builder.newDocument();
         Element rootElement = filteredDocument.createElement("grades");
         filteredDocument.appendChild(rootElement);
 
-        // Filtrer les notes de l'étudiant correspondant au code_apogee
+        codeApogee = codeApogee.replaceAll("\\s+", "").trim();
+
         NodeList studentNodes = document.getElementsByTagName("student");
         for (int i = 0; i < studentNodes.getLength(); i++) {
             Node node = studentNodes.item(i);
-            if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element studentElement = (Element) node;
 
-                if (studentElement.getAttribute("code_apogee").equals(codeApogee)) {
+                String studentCodeApogee = studentElement.getAttribute("code_apogee").trim().replaceAll("\\s+", "");
+                if (studentCodeApogee.equals(codeApogee)) {
                     Node importedNode = filteredDocument.importNode(studentElement, true);
                     rootElement.appendChild(importedNode);
                     break;
@@ -381,15 +382,16 @@ public class DocumentController {
             }
         }
 
-        // Écrire le nouveau document XML dans un fichier temporaire
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         DOMSource source = new DOMSource(filteredDocument);
         StreamResult result = new StreamResult(new File(tempXmlPath));
         transformer.transform(source, result);
 
         return tempXmlPath;
     }
+
 
     @FXML
     private void handleGenerateGradesPdf() {
@@ -399,55 +401,49 @@ public class DocumentController {
             return;
         }
 
-
         try {
-            // Diviser le nom complet en nom et prénom
-            String[] parts = selectedStudent.split(" ", 2);
-            String nom = parts[0];
-            String prenom = (parts.length > 1) ? parts[1] : "";
-
-            // Charger le fichier students.xml pour récupérer le code_apogee
             File xmlFile = new File("src/main/resources/xml/students.xml");
+            if (!xmlFile.exists()) {
+                showAlert("Erreur : Le fichier students.xml est introuvable !");
+                return;
+            }
+
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xmlFile);
             document.getDocumentElement().normalize();
 
-            // Recherche directe du Code Apogée basé sur le nom complet
+            String selectedFullName = selectedStudent.replaceAll("\\s+", " ").trim();
             NodeList studentNodes = document.getElementsByTagName("student");
             String codeApogee = null;
+
             for (int i = 0; i < studentNodes.getLength(); i++) {
                 Node node = studentNodes.item(i);
-                if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element studentElement = (Element) node;
 
                     String studentNom = studentElement.getElementsByTagName("nom").item(0).getTextContent().trim();
                     String studentPrenom = studentElement.getElementsByTagName("prenom").item(0).getTextContent().trim();
+                    String xmlFullName = (studentNom + " " + studentPrenom).replaceAll("\\s+", " ").trim();
 
-                    String xmlFullName = studentNom + " " + studentPrenom;
-                    if (selectedStudent.trim().equalsIgnoreCase(xmlFullName)) {
-                        codeApogee = studentElement.getElementsByTagName("code_apogee").item(0).getTextContent();
+                    if (selectedFullName.equalsIgnoreCase(xmlFullName)) {
+                        codeApogee = studentElement.getElementsByTagName("code_apogee").item(0).getTextContent().trim();
                         break;
                     }
                 }
             }
 
             if (codeApogee == null) {
-                showAlert("Code Apogée introuvable pour l'étudiant sélectionné.");
+                showAlert("Code Apogée introuvable.");
                 return;
             }
 
-            // Filtrer les données des notes pour l'étudiant
-            String filteredGradesPath = filterGradesXml("src/main/resources/xml/grades.xml", codeApogee);
-
-            // Générer le PDF
-            String outputFileName = nom + "_" + prenom + "_grades.pdf";
-            generatePdf(filteredGradesPath, "src/main/resources/xml/grades_report.xslt", outputFileName);
+            String filteredGradesPath = filterGradesXml("xml/grades/grades.xml", codeApogee);
+            generatePdf(filteredGradesPath, "src/main/resources/xml/grades/grades_report.xslt", selectedFullName.replaceAll("\\s+", "_") + "_grades.pdf");
 
             showAlert("Relevé de notes généré avec succès !");
         } catch (Exception e) {
-            e.printStackTrace();
-            showAlert("Erreur lors de la génération du relevé de notes : " + e.getMessage());
+            showAlert("Erreur : " + e.getMessage());
         }
     }
 }
