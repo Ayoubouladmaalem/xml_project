@@ -11,34 +11,14 @@
     -fx-padding: 10;
     -fx-font-family: "Times New Roman", serif;
     -fx-text-alignment: center;
+    -fx-background-color: transparent; /* Fond transparent par défaut */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
 }
 
-/* Welcome Content Styles */
-.welcome-title {
-    -fx-font-family: "Arial Black";
-    -fx-font-size: 36px;
-    -fx-text-fill: #2c3e50; /* Couleur sombre */
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.5, 1, 1); /* Ombre portée */
+/* Effet au survol */
+.sidebar-item:hover {
+    -fx-background-color: #4682B4; /* Bleu légèrement foncé au survol */
+    -fx-fill: white; /* Garde la couleur du texte blanche */
+    -fx-cursor: hand; /* Curseur en mode main */
 }
-
-.university-name {
-    -fx-font-family: "Georgia";
-    -fx-font-size: 28px;
-    -fx-text-fill: #34495e;
-    -fx-font-style: italic;
-}
-
-.school-name {
-    -fx-font-family: "Verdana";
-    -fx-font-size: 24px;
-    -fx-text-fill: #7f8c8d;
-}
-/*.center-content {*/
-/*    -fx-background-color: #ecf0f1; !* Couleur de fond *!*/
-/*    -fx-padding: 20px;*/
-/*    -fx-border-color: #3498db;*/
-/*    -fx-border-width: 2px;*/
-/*    -fx-border-radius: 10px;*/
-/*    -fx-background-radius: 10px;*/
-/*}*/
-

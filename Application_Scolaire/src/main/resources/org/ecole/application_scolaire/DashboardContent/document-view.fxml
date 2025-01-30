@@ -20,7 +20,7 @@
 
     <!-- Attestation de Scolarité Section -->
     <Label layoutX="200" layoutY="190" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Pour générer l'attestation de scolarité :" />
-    <Button layoutX="200" layoutY="220" onAction="#handleGenerateAttestation" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Générer Attestation PDF" />
+    <Button layoutX="200" layoutY="220" onAction="#handleGenerateAttestation" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Générer Attestation PDF" />
 
     <!-- Relevé de Notes Section -->
     <Label layoutX="200" layoutY="260" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Pour générer le relevé de notes :" />
